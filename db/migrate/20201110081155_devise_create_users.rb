@@ -41,6 +41,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :type
       t.text :introduction
       t.date :birthday
+      t.string :image_id
+
       #ここまで
 
       t.timestamps null: false

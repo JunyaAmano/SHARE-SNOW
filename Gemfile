@@ -51,6 +51,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'devise'
+  gem 'pry-byebug'
 end
 
 group :test do
@@ -69,4 +70,4 @@ gem 'jquery-rails'
 gem 'dotenv-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
-gem 'kaminari'
+gem 'kaminari','~> 1.2.1'

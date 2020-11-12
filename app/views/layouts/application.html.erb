@@ -9,17 +9,22 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/6f0d38cdd3.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+
   </head>
 
    <body id="wrapper">
     <div id="header">
       <%= render "layouts/header" %>
     </div>
-    <div class="container">
-      <div id="flash">
-        <%= render "layouts/flash" %>
+    <div id="body">
+      <div class="container py-4">
+        <div id="flash">
+          <%= render "layouts/flash" %>
+        </div>
+          <%= yield %>
       </div>
-      <%= yield %>
     </div>
     <%= render "layouts/footer" %>
   </body>

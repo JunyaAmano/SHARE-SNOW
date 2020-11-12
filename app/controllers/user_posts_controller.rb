@@ -31,6 +31,9 @@ class UserPostsController < ApplicationController
     UserPost.find_by(id: params[:id]).destroy
     redirect_to user_posts_path
   end
+  
+  def top
+  end
 
   def post_params
     params.require(:user_post).permit(:content, :image)

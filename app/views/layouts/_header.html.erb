@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <%= link_to "トップ", "#", class: "nav-link"%>
+        <%= link_to "トップ", root_path, class: "nav-link"%>
         <!--<a class="nav-link" href="#">TOP <span class="sr-only">(current)</span></a>-->
       </li>
       <li class="nav-item">
@@ -19,20 +19,23 @@
           グループ
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <% if user_signed_in? %>
           <%= link_to "所属グループ", "#", class: "dropdown-item"%>
           <!--<a class="dropdown-item" href="#">Action</a>-->
           <%= link_to "グループトーク", "#", class: "dropdown-item"%>
+        <% end %>
           <!--<a class="dropdown-item" href="#">Another action</a>-->
           <div class="dropdown-divider"></div>
           <%= link_to "グループ一覧", "#", class: "dropdown-item"%>
         </div>
       </li>
+      <% if user_signed_in? %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           マイページ
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "つぶやき", "", class: "dropdown-item"%>
+          <%= link_to "つぶやき", user_posts_path, class: "dropdown-item"%>
           <!--<a class="dropdown-item" href="#">Action</a>-->
           <%= link_to "参加イベント", "#", class: "dropdown-item"%>
           <!--<a class="dropdown-item" href="#">Another action</a>-->
@@ -40,7 +43,20 @@
           <%= link_to "プロフィール編集", "#", class: "dropdown-item"%>
         </div>
       </li>
+      <li class="nav-item">
+        <%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", method: :delete %>
+      </li>
+      <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "会員登録", new_user_registration_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ログイン", user_session_path, class: "nav-link" %>
+      </li>
     </ul>
+    
+    <!--実装予定-->
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

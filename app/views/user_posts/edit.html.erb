@@ -1,2 +1,17 @@
-<h1>UserPosts#edit</h1>
-<p>Find me in app/views/user_posts/edit.html.erb</p>
+<% provide(:title, "投稿編集") %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+          <h6 class="border-bottom border-gray pb-2 mb-2">投稿編集</h6>
+          <%= form_with model: @user_post, local:true do |f| %>
+            <%= attachment_image_tag @user_post,:image,size:'200x200',fallback:'no_image.png',size:'200x200', class:"item-image mb-2" %><br>
+            <%= f.label :image,'画像アップロード', class:'btn btn-secondary rounded-pill mb-2' %>
+            <%= f.file_field :image, style: 'display:none;' %>
+            <br>
+            <%= f.text_area :content, class:"form-control", rows:"3", placeholder:"もうすぐシーズンスタート!" %>
+            <hr>
+            <%= f.submit "更新", class:"btn btn-lg btn-block btn-base-1 mt-20 btn-success" %>
+          <% end %>
+        </div>
+      </div>
+    </div>

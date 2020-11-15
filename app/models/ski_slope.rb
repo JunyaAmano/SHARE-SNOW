@@ -1,0 +1,2 @@
+class SkiSlope < ApplicationRecord
+end

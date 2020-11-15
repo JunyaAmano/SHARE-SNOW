@@ -1,0 +1,2 @@
+module SkiSlopesHelper
+end

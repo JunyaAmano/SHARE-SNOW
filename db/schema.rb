@@ -10,7 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_192343) do
+ActiveRecord::Schema.define(version: 2020_11_14_221302) do
+
+  create_table "event_users", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.text "title"
+    t.datetime "departure_date"
+    t.datetime "return_date"
+    t.datetime "deadline_date"
+    t.integer "applicant_number"
+    t.integer "transportation_expense"
+    t.text "description"
+    t.boolean "is_published"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id", "follower_id"], name: "index_relationships_on_followed_id_and_follower_id", unique: true
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "ski_slopes", force: :cascade do |t|
+    t.string "title"
+    t.string "area"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_post_comments", force: :cascade do |t|
     t.text "comment"
@@ -46,7 +84,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_192343) do
     t.boolean "is_published"
     t.boolean "is_owned"
     t.integer "gender"
-    t.integer "type"
+    t.integer "riding_style"
     t.text "introduction"
     t.date "birthday"
     t.datetime "created_at", null: false

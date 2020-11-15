@@ -22,6 +22,7 @@ class UserPostsController < ApplicationController
   end
 
   def edit
+    @user_post = UserPost.find(params[:id])
   end
 
   def update
@@ -31,7 +32,7 @@ class UserPostsController < ApplicationController
     UserPost.find_by(id: params[:id]).destroy
     redirect_to user_posts_path
   end
-  
+
   def top
   end
 

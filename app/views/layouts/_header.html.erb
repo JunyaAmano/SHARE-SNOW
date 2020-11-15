@@ -40,7 +40,7 @@
           <%= link_to "参加イベント", "#", class: "dropdown-item"%>
           <!--<a class="dropdown-item" href="#">Another action</a>-->
           <div class="dropdown-divider"></div>
-          <%= link_to "プロフィール編集", "#", class: "dropdown-item"%>
+          <%= link_to "プロフィール編集", edit_user_path(current_user), class: "dropdown-item"%>
         </div>
       </li>
       <li class="nav-item">
@@ -55,7 +55,7 @@
         <%= link_to "ログイン", user_session_path, class: "nav-link" %>
       </li>
     </ul>
-    
+
     <!--実装予定-->
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

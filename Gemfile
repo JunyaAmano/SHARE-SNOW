@@ -54,6 +54,10 @@ group :development do
   gem 'pry-byebug'
 end
 
+group :production do
+  gem 'mysql2'
+end
+
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'

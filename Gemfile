@@ -53,9 +53,9 @@ group :development do
   gem 'pry-byebug'
 end
 
-group :production do
-  gem 'mysql2'
-end
+#group :production do
+#  gem 'mysql2'
+#end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
@@ -70,8 +70,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
-gem 'dotenv-rails'
+#gem 'dotenv-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'kaminari','~> 1.2.1'
 gem 'devise'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end

@@ -3,7 +3,7 @@
   <div class="col-md-12">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
     <div class="media text-muted pt-3">
-      <%= link_to user_post_path(@user_post.user_id) do %>
+      <%= link_to user_path(@user_post.user_id) do %>
 				<%= attachment_image_tag(@user_post.user, :image, size:'80x80', fallback: "no_image.png", size:'80x80' )%>
 			<% end %>
       <div class="media-body pb-3 mb-1 small lh-125 border-bottom border-gray">
@@ -13,8 +13,9 @@
             <%= time_ago_in_words(@user_post.created_at) %>
           </div>
         </div>
-        <%= attachment_image_tag @user_post, :image,size: '300x300', class: "mb-1"%><br>
-        <%= @user_post.content %>
+        <%= attachment_image_tag @user_post, :image,size: '300x300', class: "mb-1 ml-1"%>
+        <br>
+        <span class="ml-1"><%= @user_post.content %></span>
         <div class="row ml-2 mt-1">
           <div class="mr-1">
             <%= render "post_favorite", post: @user_post %>
@@ -44,7 +45,7 @@
     </div>
     <% @user_post.user_post_comments.each do |post| %>
     <div class="media text-muted pt-3">
-      <%= link_to user_post_path(post.user_post) do %>
+      <%= link_to user_path(post.user_id) do %>
 				<%= attachment_image_tag(post.user, :image, size:'50x50', fallback: "no_image.png", size:'50x50' )%>
 			<% end %>
       <div class="media-body pb-3 mb-1 small lh-125 border-bottom border-gray">

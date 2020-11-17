@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @title = "ユーザー一覧"
     @users = User.all
   end
 
@@ -19,6 +20,20 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def following
+    @title = "フォローユーザー"
+    @user  = User.find(params[:id])
+    @users = @user.following.all
+    render 'users/show_follow'
+  end
+
+  def followers
+    @title = "フォロワーユーザー"
+    @user  = User.find(params[:id])
+    @users = @user.followers.all
+    render 'users/show_follow'
   end
 
 

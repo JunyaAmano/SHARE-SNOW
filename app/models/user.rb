@@ -16,7 +16,7 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  
+
   has_many :event_users
   has_many :events, through: :event_users
 
@@ -35,7 +35,7 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  enum riding_style: { snow_board: 1, ski: 2, other: 3}
+  enum riding_style: { スノーボード: 1, スキー: 2, その他: 3}
 
-  enum gender: { male: 1, female: 2, privacy: 3}
+  enum gender: { 男性: 1, 女性: 2, 非公開: 3}
 end

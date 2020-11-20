@@ -1,2 +1,46 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<% provide(:title, "イベント詳細") %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0"><%= @event.title %></h6>
+        <%= render "users/profile", user: @event.user %>
+        <div class="col mt-1 mb-1 border-bottom border-gray">
+          <strong>出発予定日時</strong> <span><%= l @event.departure_date %></span>
+        </div>
+        <div class="col mt-1 mb-1 border-bottom border-gray">
+          <strong>帰宅予定日時</strong> <span><%= l @event.return_date %></span>
+        </div>
+        <div class="col mt-1 mb-1 border-bottom border-gray">
+          <strong>参加申請締切</strong> <span><%= l @event.deadline_date %></span>
+        </div>
+        <div class="col mt-1 mb-1 border-bottom border-gray">
+          <strong>スキー場</strong> <span><%= @event.ski_slope.title %></span>
+        </div>
+        <div class="col mt-1 mb-1 border-bottom border-gray">
+          <strong>１人あたりの交通費目安</strong> <span>￥<%= @event.transportation_expense %></span>
+        </div>
+        <div class="col mt-1 mb-1 border-bottom border-gray">
+          <strong>参加人数</strong> <span><%= @event.event_users.count %>人/<%= @event.applicant_number %>人</span>
+        </div>
+        <div class="col mt-1 mb-1 border-bottom border-gray">
+          <strong>詳細</strong><br>
+          <%= attachment_image_tag(@event, :image, size:'200x200', class: "mt-1 mb-1")%><br>
+          <span class="text-muted"><%= @event.description %></span>
+        </div>
+        <% unless current_user == @event.user %>
+          <% if @event.applied_by?(current_user) %>
+            <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :delete do %>
+              <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>申込取消
+            <% end %>
+          <% else %>
+            <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :post do %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>申込
+            <% end %>
+          <% end %>
+        <% else %>
+        <a></a>
+        <% end %>
+        <%= render "events/event_comment", resource: @event, resource2: @event_comment %>
+      </div>
+  </div>
+</div>

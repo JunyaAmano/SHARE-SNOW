@@ -5,8 +5,8 @@
           <h6 class="border-bottom border-gray pb-2 mb-2">投稿編集</h6>
           <%= form_with model: @user_post, local:true do |f| %>
             <%= attachment_image_tag @user_post,:image,size:'200x200',fallback:'no_image.png',size:'200x200', class:"item-image mb-2" %><br>
-            <%= f.label :image,'画像アップロード', class:'btn btn-secondary rounded-pill mb-2' %>
-            <%= f.file_field :image, style: 'display:none;' %>
+            <%= f.label :image,'画像アップロード', class:'control-label' %>
+            <%= f.file_field :image %>
             <br>
             <%= f.text_area :content, class:"form-control", rows:"3", placeholder:"もうすぐシーズンスタート!" %>
             <hr>

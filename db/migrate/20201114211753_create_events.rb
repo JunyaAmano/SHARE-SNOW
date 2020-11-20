@@ -9,7 +9,6 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.integer :transportation_expense
       t.text :description
       t.boolean :is_published
-
       t.timestamps
     end
   end

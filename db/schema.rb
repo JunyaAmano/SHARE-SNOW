@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_14_221302) do
+ActiveRecord::Schema.define(version: 2020_11_20_001523) do
+
+  create_table "event_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "event_users", force: :cascade do |t|
     t.integer "event_id"
@@ -30,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_11_14_221302) do
     t.boolean "is_published"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_id"
+    t.integer "user_id"
+    t.integer "ski_slope_id"
   end
 
   create_table "relationships", force: :cascade do |t|

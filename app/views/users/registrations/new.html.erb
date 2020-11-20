@@ -34,6 +34,7 @@
 
         <div class="field form-group col-md-12">
           <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"性別", class: "control-label" %>
           <%= f.radio_button :gender, :男性, checked: true%>
           <%= f.label :gender, "男性", {value: :男性, style: "display: inline-block;"} %>
           <%= f.radio_button :gender, :女性 %>
@@ -64,21 +65,20 @@
         </div>
 
         <div class="field form-group col-md-12">
-          <%= attachment_image_tag @user,:image,size:'200x200',fallback:'no_image.png',size:'200x200', class:"item-image " %><br>
-          <%= f.label :image,'プロフィール画像アップ', class:'btn btn-secondary rounded-pill' %>
-          <%= f.file_field :image, style: 'display:none;' %>
+          <%= f.label :'プロフィール画像アップ', class:'control-label' %>
+          <%= f.file_field :image %>
         </div>
 
 
         <div class="field form-group col-md-12">
           <i class="fa fa-check-square red" aria-hidden="true" ></i>
-          <%= f.label :"パスワード(6文字以上)", class: " control-label" %>
+          <%= f.label :"パスワード(6文字以上)", class: "control-label" %>
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
 
         <div class="field form-group col-md-12">
           <i class="fa fa-check-square red" aria-hidden="true" ></i>
-          <%= f.label :"パスワード(確認用)", class: " control-label" %>
+          <%= f.label :"パスワード(確認用)", class: "control-label" %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
 

@@ -1,22 +1,18 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <div class="my-3 p-1 bg-white rounded shadow-sm">
     <h6 class="border-bottom border-gray pb-2 mb-0">最新の投稿</h6>
     <% user_posts.each do |post| %>
-    <div class="media text-muted pt-3">
+    <div class="media text-muted pt-1  border-bottom border-gray">
       <%= link_to user_post_path(post) do %>
-				<%= attachment_image_tag(post.user, :image, size:'50x50', fallback: "no_image.png", size:'50x50' )%>
+				<%= attachment_image_tag(post.user, :image, size:'40x40', fallback: "no_image.png", size:'40x40',class: "rounded-circle" )%>
 			<% end %>
-      <div class="media-body pb-3 mb-1 small lh-125 border-bottom border-gray">
-        <div class="row mb-1">
-          <strong class="d-block text-gray-dark col-md-2" ><%= post.user.name %></strong>
-          <div class="col-md-2">
-            <%= time_ago_in_words(post.created_at) %>
-          </div>
+      <div class="media-body mb-1 small lh-125">
+        <div class="mb-1">
+          <strong class="text-gray-dark mr-2" ><%= post.user.name %></strong><%= l post.created_at %>
         </div>
-        <%= attachment_image_tag post, :image,size: '150x150', class: "mb-1 ml-1"%>
-        <br class="mb-0">
-        <span class="ml-1"><%= post.content%></span>
+        <%= attachment_image_tag post, :image,size: '150x150', class: "mb-1 ml-1 d-block"%>
+        <a class="ml-1 inline-block"><%= post.content%></a>
         <div class="row ml-2 mt-1">
           <div class="mr-1">
             <%= render "post_favorite", post: post %>

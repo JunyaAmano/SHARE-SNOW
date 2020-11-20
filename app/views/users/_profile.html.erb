@@ -1,42 +1,16 @@
-
-  <div class="col-md-6">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">プロフィール</h6>
-      <table class="table">
-        <div class="row">
-        	<tr class="col-md-6"><%= attachment_image_tag(user, :image, size:'150x150', fallback: "no_image.png", size:'150x150') %></tr>
-        </div>
-        <div class="row">
-        	<tr class="col-md-6">
-        	  <th>ユーザーネーム</th>
-      		  <th><%= user.name %></th>
-        	</tr>
-        </div>
-      	<tr>
-      		<th>性別</th>
-      		<th><%= user.gender %></th>
-      	</tr>
-      	 <tr>
-      		<th>年齢</th>
-      		<th><%= user.age %></th>
-      	</tr>
-      	<tr>
-      		<th>自家用車</th>
-      		<th><%= user.is_owned %></th>
-      	</tr>
-      	<tr>
-      		<th>スタイル</th>
-      		<th><%= user.riding_style %></th>
-      	</tr>
-        <div class="row">
-        	<tr>
-        	  <div class="col-md-1">
-        	    <th>自己紹介</th>
-        	  </div>
-        	   <div class="col-md-5">
-        	    <th><%= user.introduction %></th>
-        	  </div>
-        	</tr>
-      </table>
+<div class="media text-muted pt-2 pb-2 border-bottom border-gray">
+  <%= link_to user_path(user) do %>
+    <%= attachment_image_tag(user, :image, size:'95x95', fallback: "no_image.png", size:'95x95' , class: "rounded-circle")%>
+  <% end %>
+  <div class="media-body pb-3 mb-0 small lh-125">
+    <div class="d-flex justify-content-between align-items-center w-100">
+    <strong class="text-gray-dark"><%= user.name %></strong>
+    <%= render "users/follow", user: user %>
+    </div>
+    <span class="ml-1"><%= user.gender %></span><span class="ml-1"><%= user.age %>歳</span><span class="ml-1"><%= user.riding_style %></span>
+    <div class="mt-1 ml-1">
+    <span class="mr-1">フォロワー :<%= link_to user.followers.count, followers_user_path(user) %></span> | <span class="mr-1">フォロー : <%= link_to user.following.count, following_user_path(user) %></span>
     </div>
   </div>
+</div>
+

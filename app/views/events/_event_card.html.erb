@@ -1,0 +1,19 @@
+        <div class="col-md-6">
+          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-primary"><%= l event.departure_date, format: :short%>発 <%= event.ski_slope.title %></strong>
+              <h5 class="mb-1"><%= event.title %></h5>
+              <div class="row ml-0">
+                <%= attachment_image_tag(event.user, :image, size:'35x35', fallback: "no_image.png", size:'35x35',class: "rounded-circle")%>
+                <span><%= event.user.name %> <%= event.user.gender %> <%= event.user.age %>歳</span>
+              </div>
+              <p class="card-text mb-auto mt-1"><i class="fas fa-users"></i><%= event.event_users.count %>/<%= event.applicant_number %>人中</p>
+              <div class="text-success">募集中</div>
+              <%= link_to "Continue reading", event_path(event), class: "stretched-link "%>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+              <%= attachment_image_tag(event, :image, size:'200x250', fallback: "no_image.png", size:'200x250')%>
+              <!--<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
+            </div>
+          </div>
+        </div>

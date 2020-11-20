@@ -3,11 +3,11 @@
     <% users.each do |user| %>
     <div class="media text-muted pt-3">
       <%= link_to user_path(user) do %>
-				<%= attachment_image_tag(user, :image, size:'75x75', fallback: "no_image.png", size:'75x75' )%>
+				<%= attachment_image_tag(user, :image, size:'95x95', fallback: "no_image.png", size:'95x95' , class: "rounded-circle")%>
 			<% end %>
       <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
         <div class="d-flex justify-content-between align-items-center w-100">
-          <strong class="text-gray-dark"><%= user.name %></strong><span>登録日:<%= time_ago_in_words(user.created_at) %></span>
+          <strong class="text-gray-dark"><%= user.name %></strong>
           <!--フォローボタン-->
           <%= render "follow", user: user %>
         </div>

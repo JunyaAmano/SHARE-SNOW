@@ -1,3 +1,19 @@
 <% provide(:title, "ユーザー一覧") %>
-<%= render "users/user_index", users: @users, title: @title %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0"><%= @title %></h6>
+        <% if @users.any? %>
+            <% @users.each do |user| %>
+            <%= render "users/profile", user: user%>
+            <% end %>
+        <% else %>
+            <div class="col mt-1">
+              <strong>ユーザーはいません</strong>
+            </div>
+        <% end %>
+    </div>
+  </div>
+</div>
 

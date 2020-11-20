@@ -9,14 +9,13 @@ class UserPostCommentsController < ApplicationController
     else
       @user_post = UserPost.find(params[:user_post_id])
       @post_comment = UserPostComment.new
-      binding.pry
       render template: "user_posts/show"
     end
   end
 
   def destroy
     UserPostComment.find_by(id: params[:id], user_post_id: params[:user_post_id]).destroy
-    redirect_to post_image_path(params[:post_image_id])
+    redirect_to user_post_path(params[:user_post_id])
   end
 
   private

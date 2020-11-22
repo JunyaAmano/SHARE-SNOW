@@ -1,0 +1,72 @@
+<% provide(:title, "イベント作成") %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <h3 class="border-bottom border-gray pb-2 mb-0">イベント作成</h3>
+
+      <%= form_with model: @event, url: events_path, local: true do |f| %>
+        <%= render "layouts/error_messages", resource: @event %>
+        <div class="col-md-12 mb-3"><i class="fa fa-check-square red" aria-hidden="true" ></i>は入力必須項目</div>
+
+        <div class="field form-group col-md-12">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"イベント名 ※30文字以内", class: "control-label" %>
+          <%= f.text_field :title, autofocus: true, placeholder:"例：12/5【初心者歓迎】みんなでシーズンイン！", class: " form-control" %>
+        </div>
+
+        <div class="field form-group col-md-12">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"イベント詳細", class: " control-label" %>
+          <%= f.text_area :description, autofocus: true, placeholder:"ピックアップポイント、車の有無、ルート、日程の詳細、募集レベル等", class: "form-control" %>
+        </div>
+
+        <div class="field form-group col-md-12">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"募集人数(主催者は含まない)", class: "control-label" %>
+          <%= f.select :applicant_number, options_for_select((1..20).to_a), class: 'form-control' , required: true %>
+        </div>
+
+        <div class="field form-group col-md-12">
+          <%= f.label :"※車の場合 1人あたりの目安の徴収交通費(￥)" ,class: "control-label" %>
+          <%= f.text_field :transportation_expense, autofocus: true,placeholder:"半角数字のみ" %>
+        </div>
+
+        <div class="field form-group col-md-12">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"ゲレンデ", class: "control-label" %>
+          <%= f.collection_select(:ski_slope_id, @ski_slopes, :id, :title) %>
+        </div>
+
+        <div class="field form-group col-md-12">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"出発日時", class: " control-label" %>
+          <%= f.datetime_field :departure_date, class: 'form-control' %>
+        </div>
+
+        <div class="field form-group col-md-12">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"帰宅日時", class: " control-label" %>
+          <%= f.datetime_field :return_date, class: 'form-control' %>
+        </div>
+
+        <div class="field form-group col-md-12">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"申し込み締め切り日時", class: " control-label" %>
+          <%= f.datetime_field :deadline_date, class: 'form-control' %>
+        </div>
+
+        <div class="field form-group col-md-12">
+          <%= f.label :"添付イメージ写真", class: " control-label" %>
+          <%= f.file_field :image %>
+        </div>
+
+
+        <div class="actions col-md-12 border-bottom border-gray pb-2 mb-0">
+          <%= f.submit "イベント作成",class: 'btn btn-success btn-lg col-md-3' %>
+        </div>
+      <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

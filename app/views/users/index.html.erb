@@ -1,0 +1,26 @@
+<% provide(:title, "ユーザー一覧") %>
+
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0">
+            プロフィール
+            <% if current_user %>
+                <%= link_to edit_user_path(current_user) do %>
+                <i class="fas fa-edit ml-1" aria-hidden="true"></i>
+                <% end %>
+            <% end %>
+        </h6>
+      <%= render "users/profile_detail", user: current_user %>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0">ユーザープロフィール</h6>
+        <% @users.each do |user| %>
+        <%= render "users/profile", user: user%>
+        <% end %>
+    </div>
+  </div>
+</div>

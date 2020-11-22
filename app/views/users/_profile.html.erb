@@ -1,0 +1,16 @@
+<div class="media text-muted pt-2 border-bottom border-gray">
+  <%= link_to user_path(user) do %>
+    <%= attachment_image_tag(user, :image, size:'80x80', fallback: "no_image.png", size:'80x80' , class: "rounded-circle")%>
+  <% end %>
+  <div class="media-body pb-2 mb-0 small lh-125">
+    <div class="d-flex justify-content-between align-items-center w-100 mb-1">
+    <strong class="text-gray-dark"><%= user.name %></strong>
+    <%= render "users/follow", user: user %>
+    </div>
+    <span class="ml-1"><%= user.gender %></span><span class="ml-1"><%= user.age %>歳</span><span class="ml-1"><%= user.riding_style %></span>
+    <div class="mt-1 ml-1">
+    <span class="mr-1">フォロワー :<%= link_to user.followers.count, followers_user_path(user) %></span> | <span class="mr-1">フォロー : <%= link_to user.following.count, following_user_path(user) %></span>
+    </div>
+  </div>
+</div>
+

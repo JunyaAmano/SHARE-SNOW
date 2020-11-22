@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SHARESnow</title>
+  <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/6f0d38cdd3.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+
   </head>
 
-  <body>
-    <%= yield %>
+   <body id="wrapper">
+    <div id="header">
+      <%= render "layouts/header" %>
+    </div>
+    <div id="body">
+      <div class="container pl-3 pr-3">
+        <div id="flash">
+          <%= render "layouts/flash" %>
+        </div>
+          <%= yield %>
+      </div>
+    </div>
+    <%= render "layouts/footer" %>
   </body>
 </html>
+

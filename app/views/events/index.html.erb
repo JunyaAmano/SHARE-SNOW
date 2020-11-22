@@ -1,15 +1,39 @@
 <% provide(:title, "投稿一覧") %>
 
 <div class="row">
-  <div class="col-md-12">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h3 class="border-bottom border-gray pb-2 mb-0">イベント一覧</h3>
-      <div class="row mb-2 mt-2">
-        <%= @events.each do |event| %>
-          <%= render "events/event_card", event: event %>
-        <% end %>
-      </div>
+  <div class=" col-md-12 mt-3">
+    <ul class="nav nav-tabs ">
+      <li class="nav-item">
+        <a href="#tab1" class="nav-link active small" data-toggle="tab">最新</a>
+      </li>
+      <li class="nav-item">
+        <a href="#tab2" class="nav-link small" data-toggle="tab">ホームゲレンデ</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+        <div id="tab1" class="tab-pane active">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="row">
+                <% @events.each do |event| %>
+                  <%= render "events/event_card", event: event %>
+                <% end %>
+            </div>
+          </div>
+        </div>
+        <div id="tab2" class="tab-pane">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="row">
+              <%# if @home_events.any? %>
+                <%# @home_events.each do |home_event| %>
+                <%# event = Event.find_by(id: applied_event.event_id) %>
+                  <%#= render "events/event_card", event: event %>
+                <%# end %>
+              <%# else %>
+                <a class="pl-2">ホームゲレンデのイベントはありません</a>
+              <%# end %>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 </div>
-

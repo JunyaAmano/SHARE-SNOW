@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
+
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update]
+
+
   def show
     @user = User.find(params[:id])
     @user_posts = @user.user_posts
+    @applied_events = EventUser.where(user_id: @user.id)
+    @organized_events = Event.where(user_id: @user.id)
   end
 
   def index
@@ -40,6 +47,13 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :image, :age, :is_owned, :gender, :riding_style)
+  end
+
+  def correct_user
+    event = Event.find(params[:id])
+    unless event.user == current_user
+      redirect_to user_path(current_user)
+    end
   end
 
 end

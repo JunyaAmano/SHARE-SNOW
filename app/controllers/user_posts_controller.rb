@@ -1,7 +1,13 @@
 class UserPostsController < ApplicationController
+
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def index
     @user_post = UserPost.new
-    @user_posts = UserPost.all
+    @user_posts = UserPost.all.order(updated_at: :desc)
+    @ranking_users_posts = UserPost.joins(:user_post_favorites).where(user_posts: {created_at: Time.now.all_month})
+    .group("id").order("count(user_post_favorites.user_post_id) DESC")
   end
 
   def create
@@ -15,7 +21,6 @@ class UserPostsController < ApplicationController
     end
   end
 
-
   def show
     @user_post = UserPost.find(params[:id])
     @post_comment = UserPostComment.new
@@ -26,6 +31,12 @@ class UserPostsController < ApplicationController
   end
 
   def update
+    @user_post = UserPost.find(params[:id])
+    if @user_post.update(post_params)
+      redirect_to user_post_path(@user_post)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -34,6 +45,9 @@ class UserPostsController < ApplicationController
   end
 
   def top
+    @events = Event.order(updated_at: :desc).limit(4)
+    @user_posts = UserPost.order(updated_at: :desc).limit(10)
+    @users = User.order(updated_at: :desc).limit(10)
   end
 
   def post_params
@@ -41,9 +55,9 @@ class UserPostsController < ApplicationController
   end
 
   def correct_user
-    book = Book.find(params[:id])
-    if current_user.id != book.user_id
-    redirect_to books_path
+    @user_post = UserPost.find(params[:id])
+    unless @user_post.user == current_user
+      redirect_to user_path(current_user)
     end
   end
 end

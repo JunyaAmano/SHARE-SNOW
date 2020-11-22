@@ -1,0 +1,17 @@
+  <%= render "users/profile", user: user %>
+  <div class="col mt-1 mb-1 border-bottom border-gray">
+    <strong>登録日時</strong> <span><%= l user.created_at %></span>
+  </div>
+  <div class="col mt-1 mb-1 border-bottom border-gray">
+    <strong>車の有無</strong>
+    <% if user.is_owned == false %>
+      <span>無し</span>
+    <% else %>
+      <span>有り</span>
+    <% end %>
+  </div>
+  <div class="col mt-1 mb-1 border-bottom border-gray">
+    <strong>自己紹介</strong><br>
+    <span class="text-muted mt-1"><%= user.introduction %></span>
+  </div>
+

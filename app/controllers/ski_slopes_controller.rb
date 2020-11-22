@@ -39,7 +39,7 @@ class SkiSlopesController < ApplicationController
   end
 
   private
-
+  
   def slope_params
     params.require(:ski_slope).permit(:title, :description, :area)
   end

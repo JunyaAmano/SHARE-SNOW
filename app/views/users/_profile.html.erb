@@ -1,9 +1,9 @@
-<div class="media text-muted pt-2 pb-2 border-bottom border-gray">
+<div class="media text-muted pt-2 border-bottom border-gray">
   <%= link_to user_path(user) do %>
-    <%= attachment_image_tag(user, :image, size:'95x95', fallback: "no_image.png", size:'95x95' , class: "rounded-circle")%>
+    <%= attachment_image_tag(user, :image, size:'80x80', fallback: "no_image.png", size:'80x80' , class: "rounded-circle")%>
   <% end %>
-  <div class="media-body pb-3 mb-0 small lh-125">
-    <div class="d-flex justify-content-between align-items-center w-100">
+  <div class="media-body pb-2 mb-0 small lh-125">
+    <div class="d-flex justify-content-between align-items-center w-100 mb-1">
     <strong class="text-gray-dark"><%= user.name %></strong>
     <%= render "users/follow", user: user %>
     </div>

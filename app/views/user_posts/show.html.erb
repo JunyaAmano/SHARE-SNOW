@@ -3,7 +3,7 @@
   <div class="col-md-12">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
     <div class="media text-muted pt-1  border-bottom border-gray">
-      <%= link_to user_post_path(@user_post) do %>
+      <%= link_to user_path(@user_post.user) do %>
 				<%= attachment_image_tag(@user_post.user, :image, size:'70x70', fallback: "no_image.png", size:'70x70',class: "rounded-circle" )%>
 			<% end %>
       <div class="media-body mb-1 small lh-125">
@@ -14,7 +14,7 @@
         <a class="ml-1 inline-block"><%= @user_post.content%></a>
         <div class="row ml-2 mt-1">
           <div class="mr-1">
-            <%= render "post_favorite", post: @user_post %>
+            <%= render "user_posts/post_favorite", post: @user_post %>
           </div>
           <%= link_to user_post_path(@user_post) do %>
           <i class="fas fa-comments" aria-hidden="true"></i>

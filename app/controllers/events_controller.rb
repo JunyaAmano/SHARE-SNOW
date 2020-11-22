@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
   def new
     @event = Event.new
     @ski_slopes = SkiSlope.all
@@ -10,7 +13,7 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    @events = Event.all.order(updated_at: :desc)
   end
 
   def edit
@@ -31,11 +34,10 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.user_id = current_user.id
-    if @event.save
+    if @event.update(event_params)
       redirect_to event_path(@event)
     else
-      render :new
+      render :edit
     end
   end
 
@@ -48,6 +50,13 @@ class EventsController < ApplicationController
   private
   def event_params
     params.require(:event).permit(:title, :departure_date, :return_date, :deadline_date, :applicant_number, :transportation_expense, :description, :is_published, :ski_slope_id, :image)
+  end
+
+  def correct_user
+    event = Event.find(params[:id])
+    unless event.user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
 
 end

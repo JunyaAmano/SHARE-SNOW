@@ -13,12 +13,10 @@
         </div>
         <span class="ml-1"><%= user.gender %></span><span class="ml-1"><%= user.age %>歳</span><span class="ml-1"><%= user.riding_style %></span>
         <div class="mt-1 ml-1">
-          <span class="mr-1">フォロワー :<%= link_to user.followers.count, followers_user_path(user) %></span>|<span class="mr-1">フォロー : <%= link_to user.following.count, following_user_path(user) %></span>
+          <span class="mr-1">フォロワー : <%= link_to user.followers.count, followers_user_path(user) %></span>|<span class="mr-1">フォロー : <%= link_to user.following.count, following_user_path(user) %></span>
           </div>
       </div>
     </div>
     <% end %>
-    <small class="d-block text-right mt-3">
-      <a href="#">All suggestions</a>
-      </small>
+
   </div>

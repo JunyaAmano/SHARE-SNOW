@@ -1,4 +1,6 @@
 class EventCommentsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:destroy]
 
   def create
     event = Event.find(params[:event_id])
@@ -7,9 +9,9 @@ class EventCommentsController < ApplicationController
     if  comment.save
       redirect_to event_path(event)
     else
+      @event_comment = EventComment.new
       @event = Event.find(params[:event_id])
-      @event = Event.new
-      render template: "events/show"
+      render "events/show"
     end
   end
 
@@ -21,6 +23,13 @@ class EventCommentsController < ApplicationController
   private
   def event_comment_params
     params.require(:event_comment).permit(:comment)
+  end
+
+  def correct_user
+    event_comment = EventComment.find(params[:id])
+    unless event_comment.user == current_user
+      redirect_to event_path(event)
+    end
   end
 
 end

@@ -8,7 +8,7 @@
     <% resource.user_post_comments.each do |post| %>
     <div class="media text-muted pt-1  border-bottom border-gray">
         <%= link_to user_path(post.user_id) do %>
-				<%= attachment_image_tag(post.user, :image, size:'50x50', fallback: "no_image.png", size:'50x50' )%>
+				<%= attachment_image_tag(post.user, :image, size:'50x50', fallback: "no_image.png", size:'50x50',class: "rounded-circle" )%>
 			<% end %>
       <div class="media-body mb-1 small lh-125">
         <div class="mb-1">
@@ -23,6 +23,3 @@
       </div>
     </div>
     <% end %>
-    <small class="d-block text-right mt-3">
-      <a href="#">All updates</a>
-    </small>

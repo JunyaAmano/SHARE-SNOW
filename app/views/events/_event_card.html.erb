@@ -7,8 +7,12 @@
                 <%= attachment_image_tag(event.user, :image, size:'35x35', fallback: "no_image.png", size:'35x35',class: "rounded-circle")%>
                 <span><%= event.user.name %> <%= event.user.gender %> <%= event.user.age %>歳</span>
               </div>
-              <p class="card-text mb-auto mt-1"><i class="fas fa-users"></i><%= event.event_users.count %>/<%= event.applicant_number %>人中</p>
-              <div class="text-success">募集中</div>
+              <p class="card-text mb-auto mt-1"><i class="fas fa-users"><%= event.event_users.count %>/<%= event.applicant_number %>人中</i>  <i class="fas fa-comments" aria-hidden="true"><%= event.event_comments.count %>コメント</i></p>
+              <% if event.authorized_by?(event) %>
+                <div class="text-success">募集中</div>
+              <% else %>
+                <a style="color:red">募集終了</a>
+              <% end %>
               <%= link_to "Continue reading", event_path(event), class: "stretched-link "%>
             </div>
             <div class="col-auto d-none d-lg-block">

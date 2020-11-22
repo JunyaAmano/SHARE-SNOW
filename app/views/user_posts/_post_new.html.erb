@@ -1,5 +1,4 @@
-    <div class="row">
-      <div class="col-md-12">
+
         <div class="my-3 p-3 bg-white rounded shadow-sm">
           <h6 class="border-bottom border-gray pb-2 mb-2">投稿する</h6>
           <%= form_with model:user_post, url: user_posts_path, local:true do |f| %>
@@ -7,8 +6,6 @@
             <br>
             <%= f.text_area :content, class:"form-control", rows:"3", placeholder:"もうすぐシーズンスタート!" %>
             <hr>
-            <%= f.submit "つぶやいてみる", class:"btn btn-lg btn-block btn-base-1 mt-20 btn-info" %>
+            <%= f.submit "つぶやく", class:"btn btn-lg btn-block btn-base-1 mt-20 btn-info" %>
           <% end %>
         </div>
-      </div>
-    </div>

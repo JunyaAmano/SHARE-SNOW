@@ -1,6 +1,40 @@
 <% provide(:title, "投稿一覧") %>
 
-<%= render "post_new", user_post: @user_post %>
 
-<%= render "post_index", user_posts: @user_posts %>
 
+<div class="row">
+　<div class="col-md-4">
+    <%= render "post_new", user_post: @user_post %>
+</div>
+  <div class=" col-md-7 p-3">
+    <ul class="nav nav-tabs ">
+      <li class="nav-item">
+        <a href="#tab1" class="nav-link active small" data-toggle="tab">最新</a>
+      </li>
+      <li class="nav-item">
+        <a href="#tab2" class="nav-link small" data-toggle="tab">フォロー</a>
+      </li>
+      <li class="nav-item">
+        <a href="#tab3" class="nav-link small" data-toggle="tab">今月の人気</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+        <div id="tab1" class="tab-pane active">
+          <div class=" my-3 p-1 pb-3 bg-white rounded shadow-sm">
+              <%= render "user_posts/post_index", user_posts: @user_posts %>
+          </div>
+        </div>
+        <div id="tab2" class="tab-pane">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="row">
+            </div>
+          </div>
+        </div>
+        <div id="tab3" class="tab-pane">
+            <div class=" my-3 p-1 pb-3 bg-white rounded shadow-sm">
+              <%= render "user_posts/post_index", user_posts: @ranking_users_posts %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

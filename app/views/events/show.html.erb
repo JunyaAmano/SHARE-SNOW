@@ -3,6 +3,7 @@
   <div class="col-md-4">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <%= render "users/profile_detail", user: @event.user %>
+      <%= render "users/chat_start", isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry, user: @user %>
     </div>
   </div>
   <div class="col-md-8">

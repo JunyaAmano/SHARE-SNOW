@@ -1,6 +1,20 @@
 <% provide(:title, "投稿詳細") %>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-4">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0">
+            プロフィール
+            <% if @user == current_user %>
+                <%= link_to edit_user_path(@user) do %>
+                <i class="fas fa-edit ml-1" aria-hidden="true"></i>
+                <% end %>
+            <% end %>
+        </h6>
+        <%= render "users/profile_detail", user: @user %>
+        <%= render "users/chat_start", isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry, user: @user %>
+    </div>
+  </div>
+  <div class="col-md-8">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
     <div class="media text-muted pt-1  border-bottom border-gray">
       <%= link_to user_path(@user_post.user) do %>

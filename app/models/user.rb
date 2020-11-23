@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :event_users, dependent: :destroy
   has_many :events, through: :event_users
   has_many :event_comments, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   validates :name, presence: true, length: {maximum: 10, minimum: 2}
   validates :introduction, length: {maximum: 200}

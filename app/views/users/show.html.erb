@@ -12,6 +12,7 @@
             <% end %>
         </h6>
         <%= render "users/profile_detail", user: @user %>
+        <%= render "users/chat_start", isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry, user: @user %>
     </div>
   </div>
   <div class=" col-md-7 p-3">
@@ -65,5 +66,4 @@
     </div>
     </div>
   </div>
-
 </div>

@@ -4,8 +4,6 @@ class Event < ApplicationRecord
   has_many :event_comments, dependent: :destroy
   belongs_to :ski_slope
   belongs_to :user
-  belongs_to :user
-  belongs_to :room
 
   validates :title, presence: true, length: {maximum: 30}
 	validates :description, presence: true, length: {maximum: 700}

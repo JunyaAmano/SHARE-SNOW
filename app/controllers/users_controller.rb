@@ -31,14 +31,18 @@ class UsersController < ApplicationController
 
   def index
     @title = "ユーザー一覧"
-    @users = User.all
+    @users = User.all.order(updated_at: :desc)
+    @snowboard_users = User.where(riding_style: "スノーボード").order(updated_at: :desc)
+    @ski_users = User.where(riding_style: "スキー").order(updated_at: :desc)
   end
 
   def edit
     @user = User.find(params[:id])
+    @ski_slopes = SkiSlope.all
   end
 
   def update
+    @ski_slopes = SkiSlope.all
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user.id)
@@ -64,7 +68,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :introduction, :image, :age, :is_owned, :gender, :riding_style)
+    params.require(:user).permit(:name, :introduction, :image, :age, :is_owned, :gender, :riding_style, :ski_slope_id)
   end
 
   def correct_user

@@ -13,7 +13,6 @@ class EventsController < ApplicationController
     @user = @event.user
     @applied_events = EventUser.where(user_id: @user.id)
     @organized_events = Event.where(user_id: @user.id)
-
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
@@ -35,6 +34,9 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all.order(updated_at: :desc)
+    unless current_user.ski_slope.nil?
+      @home_events = current_user.ski_slope.events.order(updated_at: :desc)
+    end
   end
 
   def edit
@@ -55,6 +57,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    @ski_slopes = SkiSlope.all
     if @event.update(event_params)
       redirect_to event_path(@event)
     else
@@ -63,8 +66,28 @@ class EventsController < ApplicationController
   end
 
   def applicants
-    @user  = User.find(params[:id])
-    @users = @user.event_users.all
+    @event = Event.find(params[:id])
+    @user = @event.user
+    @users = @user.event_users
+    @applied_events = EventUser.where(user_id: @user.id)
+    @organized_events = Event.where(user_id: @user.id)
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
     render 'events/show_applicant'
   end
 

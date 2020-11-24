@@ -1,0 +1,24 @@
+<% provide(:title, "イベント参加者") %>
+<div class="row">
+  <div class="col-md-4">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <%= render "users/profile_detail", user: @event.user %>
+      <%= render "users/chat_start", isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry, user: @user %>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0">参加者</h6>
+        <% if @users.any? %>
+          <% @users.each do |event_user| %>
+            <% user = User.find_by(id: event_user.user_id) %>
+            <%= render "users/profile", user: user%>
+          <% end %>
+        <% else %>
+          <div class="col mt-1">
+            <strong>ユーザーはいません</strong>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

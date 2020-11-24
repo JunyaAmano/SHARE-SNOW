@@ -51,6 +51,11 @@
         </div>
 
         <div class="field form-group col-md-12">
+          <%= f.label :"ゲレンデ", class: "control-label" %>
+          <%= f.collection_select(:ski_slope_id, @ski_slopes, :id, :title, include_blank: '選択してください') %>
+        </div>
+
+        <div class="field form-group col-md-12">
           <%= attachment_image_tag @user,:image,size:'200x200',fallback:'no_image.png',size:'200x200', class:"item-image " %><br>
           <%= f.label :'プロフィール画像', class:'control-label' %>
           <%= f.file_field :image %>

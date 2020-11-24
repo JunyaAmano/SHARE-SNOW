@@ -21,25 +21,25 @@
         </h6>
         <%= attachment_image_tag(@event, :image, size:'200x200', class: "mt-1 mb-1")%>
         <div class="col mt-1 mb-1 border-bottom border-gray">
-          <strong>出発予定日時</strong> <span><%= l @event.departure_date %></span>
+          <span class="text-muted text-sm">出発予定日時</span> <span><%= l @event.departure_date %></span>
         </div>
         <div class="col mt-1 mb-1 border-bottom border-gray">
-          <strong>帰宅予定日時</strong> <span><%= l @event.return_date %></span>
+          <span class="text-muted">帰宅予定日時</span> <span><%= l @event.return_date %></span>
         </div>
         <div class="col mt-1 mb-1 border-bottom border-gray">
-          <strong>参加申請締切</strong> <span><%= l @event.deadline_date %></span>
+          <span class="text-muted">参加申請締切</span> <span><%= l @event.deadline_date %></span>
         </div>
         <div class="col mt-1 mb-1 border-bottom border-gray">
-          <strong>スキー場</strong> <span><%= @event.ski_slope.title %></span>
+          <span class="text-muted">ゲレンデ</span> <span><%= link_to @event.ski_slope.title, ski_slope_path(@event.ski_slope) %></span>
         </div>
         <div class="col mt-1 mb-1 border-bottom border-gray">
-          <strong>１人あたりの交通費目安</strong> <span>￥<%= @event.transportation_expense %></span>
+          <span class="text-muted">１人あたりの交通費目安</span> <span>￥<%= @event.transportation_expense %></span>
         </div>
         <div class="col mt-1 mb-1 border-bottom border-gray">
-          <strong>参加人数</strong> <span><%= @event.event_users.count %>人/<%= @event.applicant_number %>人</span>
+          <span class="text-muted">参加人数</span> <span><%= link_to @event.event_users.count, applicants_event_path %>人/<%= @event.applicant_number %>人</span>
         </div>
         <div class="col mt-1 mb-1 border-bottom border-gray">
-          <strong>詳細</strong><br>
+          <span class="text-muted">詳細</span><br>
           <span class="text-muted"><%= @event.description %></span>
         </div>
         <!--イベント作成したユーザーかの確認-->

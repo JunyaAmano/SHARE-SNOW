@@ -1,0 +1,21 @@
+      <div class="my-3 p-3 bg-white rounded shadow-sm">
+      
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>ゲレンデ名</th>
+            <th>エリア</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% slopes.each do |slope| %>
+          <tr>
+            <td><%= link_to slope.title, ski_slope_path(slope) %></td>
+            <td><%= slope.area %></td>
+            <td><%= link_to "編集", edit_ski_slope_path(slope), class: "btn-sm btn-outline-success" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>

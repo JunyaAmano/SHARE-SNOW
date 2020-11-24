@@ -1,2 +1,10 @@
-<h1>SkiSlopes#edit</h1>
-<p>Find me in app/views/ski_slopes/edit.html.erb</p>
+<% provide(:title, "ゲレンデ一覧") %>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= render "ski_slopes/edit", slope: @slope %>
+  </div>
+  <div class="col-md-8">
+    <%= render "ski_slopes/index", slopes: @slopes %>
+  </div>
+</div>

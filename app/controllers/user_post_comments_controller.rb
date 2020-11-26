@@ -9,10 +9,8 @@ class UserPostCommentsController < ApplicationController
     if  comment.save
       redirect_to user_post_path(user_post)
     else
-      @post_comment = UserPostComment.new
-      @user_post = UserPost.find(params[:user_post_id])
-      render template: "user_posts/show"
-    end
+      # バリデーションエラーメッセージなし
+      redirect_to user_post_path(event)
   end
 
   def destroy
@@ -31,6 +29,5 @@ class UserPostCommentsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
-
 end
 

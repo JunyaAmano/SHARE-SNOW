@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :introduction, :image, :age, :is_owned, :gender, :riding_style])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :introduction, :image, :age, :is_owned, :gender, :riding_style, :ski_slope_id])
+    @ski_slopes = SkiSlope.all
   end
 end

@@ -1,7 +1,14 @@
-<% if post.favorited_by?(current_user) %>
-  <%= link_to user_post_user_post_favorites_path(id: post.id, user_post_id: post.id), method: :delete do %>
-    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-    <%= post.user_post_favorites.count %>
+<% if user_signed_in? %>
+  <% if post.favorited_by?(current_user) %>
+    <%= link_to user_post_user_post_favorites_path(id: post.id, user_post_id: post.id), method: :delete do %>
+      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+      <%= post.user_post_favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to user_post_user_post_favorites_path(id: post.id, user_post_id: post.id), method: :post do %>
+      <i class="fa fa-heart-o" aria-hidden="true"></i>
+      <%= post.user_post_favorites.count %>
+    <% end %>
   <% end %>
 <% else %>
   <%= link_to user_post_user_post_favorites_path(id: post.id, user_post_id: post.id), method: :post do %>

@@ -9,9 +9,8 @@ class EventCommentsController < ApplicationController
     if  comment.save
       redirect_to event_path(event)
     else
-      @event_comment = EventComment.new
-      @event = Event.find(params[:event_id])
-      render "events/show"
+      # バリデーションエラーメッセージなし
+      redirect_to event_path(event)  
     end
   end
 

@@ -1,5 +1,6 @@
     <div>
         <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">コメント<%= resource.event_comments.count %>件</h6>
+        <%= render "layouts/error_messages", resource: resource %>
         <%= form_with model:[resource,resource2], local:true do |f| %>
         <%= f.text_area :comment, class:"form-control", rows:"1", placeholder:"コメント" %>
         <%= f.submit "送信", class:"btn btn-base-1 mt-10" %>
@@ -23,6 +24,3 @@
       </div>
     </div>
     <% end %>
-    <small class="d-block text-right mt-3">
-      <a href="#">All updates</a>
-    </small>

@@ -11,6 +11,14 @@
     <% end %>
   </div>
   <div class="col mt-1 mb-1 border-bottom border-gray">
+    <strong>ホームゲレンデ</strong><br>
+    <% if user.ski_slope_id.nil? %>
+      <span>登録されていません</span>
+    <% else %>
+      <span><%= link_to user.ski_slope.title, ski_slope_path(user.ski_slope)%></span>
+    <% end %>
+  </div>
+  <div class="col mt-1 mb-1 border-bottom border-gray">
     <strong>自己紹介</strong><br>
     <span class="text-muted mt-1"><%= user.introduction %></span>
   </div>

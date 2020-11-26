@@ -1,0 +1,15 @@
+
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <h6 class="border-bottom border-gray pb-2 mb-0">ゲレンデ</h6>
+      <%= form_with model: @slope, local: true do |f| %>
+        <%= render "layouts/error_messages", resource: @slope %><br>
+          <%= f.label :"ゲレンデ名", class: "control-label" %>
+          <%= f.text_field :title, autofocus: true,placeholder:"ゲレンデ名", class: " form-control" %>
+
+          <%= f.label :"エリア", class: "control-label" %>
+          <%= f.text_field :area, autofocus: true,placeholder:"ゲレンデエリア", class: " form-control" %>
+        <div class="actions col-md-12 border-bottom border-gray pb-2 mb-0">
+        </div>
+        <%= f.submit "新規登録",class: 'btn btn-lg btn-block btn-base-1 mt-20 btn-info' %>
+      <% end %>
+    </div>

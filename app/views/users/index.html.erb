@@ -2,6 +2,7 @@
 
 
 <div class="row">
+  <% if user_signed_in? %>
   <div class="col-md-4">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
         <h6 class="border-bottom border-gray pb-2 mb-0">
@@ -15,12 +16,103 @@
       <%= render "users/profile_detail", user: current_user %>
     </div>
   </div>
-  <div class="col-md-8">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">ユーザープロフィール</h6>
-        <% @users.each do |user| %>
-        <%= render "users/profile", user: user%>
-        <% end %>
-    </div>
+  <% end %>
+  <div class=" col-md-8 p-3">
+    <ul class="nav nav-tabs ">
+      <li class="nav-item">
+        <a href="#tab1" class="nav-link active small" data-toggle="tab">検索</a>
+      </li>
+      <li class="nav-item">
+        <a href="#tab2" class="nav-link small" data-toggle="tab">スノーボード</a>
+      </li>
+      <li class="nav-item">
+        <a href="#tab3" class="nav-link small" data-toggle="tab">スキー</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+        <div id="tab1" class="tab-pane active">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="row">
+              <div class="col-md-12">
+                <%= search_form_for(@q) do |f| %>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="field form-group col-md-12">
+                        <%= f.label :"ユーザー", class: "control-label" %>
+                        <%= f.search_field :name_cont %>
+                      </div>
+                      <div class="field form-group col-md-12">
+                        <%= f.label :"自己紹介" %>
+                        <%= f.search_field :introduction_cont %>
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="field form-group col-md-12">
+                        <%= f.label :"性別", class: " control-label" %>
+                      　<%= f.radio_button :gender_eq, '', checked: true %>
+                        <%= f.label :gender, "指定なし", {value: :指定なし, style: "display: inline-block;"} %>
+                        <%= f.radio_button :gender_eq, 1 %>
+                        <%= f.label :gender, "男性", {value: :男性, style: "display: inline-block;"} %>
+                        <%= f.radio_button :gender_eq, 2 %>
+                        <%= f.label :gender, "女性", {value: :女性, style: "display: inline-block;"} %>
+                        <%= f.radio_button :gender_eq, 3 %>
+                        <%= f.label :gender, "非公開", {value: :非公開, style: "display: inline-block;"} %>
+                      </div>
+
+                      <div class="field form-group col-md-12">
+                        <%= f.label :"スタイル", class: " control-label" %>
+                      　<%= f.radio_button :riding_style_eq, '', checked: true %>
+                        <%= f.label :riding_style, "指定なし", {value: :指定なし, style: "display: inline-block;"} %>
+                        <%= f.radio_button :riding_style_eq, 1 %>
+                        <%= f.label :riding_style, "スノーボード", {value: :スノーボード, style: "display: inline-block;"} %>
+                        <%= f.radio_button :riding_style_eq, 2 %>
+                        <%= f.label :riding_style, "スキー", {value: :スキー, style: "display: inline-block;"} %>
+                        <%= f.radio_button :riding_style_eq, 3 %>
+                        <%= f.label :riding_style, "その他", {value: :その他, style: "display: inline-block;"} %>
+                      </div>
+                      <div class="field form-group col-md-12">
+                        <%= f.label :"自家用車", class: " control-label" %>
+                      　<%= f.radio_button :is_owned_eq, '', checked: true %>
+                        <%= f.label :is_owned_eq, "指定なし", {value: :指定なし, style: "display: inline-block;"} %>
+                        <%= f.radio_button :is_owned_eq, true %>
+                        <%= f.label :iw_owned, "有", {value: :true, style: "display: inline-block;"} %>
+                        <%= f.radio_button :is_owned_eq, false %>
+                        <%= f.label :iw_owned, "無", {value: :false, style: "display: inline-block;"} %>
+                      </div>
+                      <div class="field form-group col-md-12">
+                        <%= f.label :"年齢", class: " control-label" %>
+                        <%= f.select :age_gteq, options_for_select((1..99).to_a), class: 'form-control' , :include_blank => '指定なし' %> ~
+                        <%= f.select :age_lteq, options_for_select((1..99).to_a), class: 'form-control' , :include_blank => '指定なし' %>
+                      </div>
+                    </div>
+                    <div class="actions col-md-12 border-top border-gray pt-2 mb-0">
+                      <%= f.submit "検索", class: 'btn btn-info btn-lg col' %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <% @q_users.each do |user| %>
+            <%= render "users/profile", user: user%>
+            <% end %>
+          </div>
+        </div>
+        <div id="tab2" class="tab-pane">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+          <% @snowboard_users.each do |user| %>
+          <%= render "users/profile", user: user%>
+          <% end %>
+          </div>
+        </div>
+        <div id="tab3" class="tab-pane">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <% @ski_users.each do |user| %>
+            <%= render "users/profile", user: user%>
+            <% end %>
+          </div>
+        </div>
   </div>
 </div>
+

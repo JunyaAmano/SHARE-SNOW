@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   attachment :image
 
+  belongs_to :ski_slope
   has_many :user_posts, dependent: :destroy
   has_many :user_post_comments, dependent: :destroy
   has_many :user_post_favorites, dependent: :destroy
@@ -21,10 +22,12 @@ class User < ApplicationRecord
   has_many :event_users, dependent: :destroy
   has_many :events, through: :event_users
   has_many :event_comments, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   validates :name, presence: true, length: {maximum: 10, minimum: 2}
   validates :introduction, length: {maximum: 200}
-  validates :age, :gender, :is_owned, :riding_style, presence: true
+  validates :age, :gender, :riding_style, presence: true
 
   enum riding_style: { スノーボード: 1, スキー: 2, その他: 3}
   enum gender: { 男性: 1, 女性: 2, 非公開: 3}

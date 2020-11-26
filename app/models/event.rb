@@ -10,6 +10,7 @@ class Event < ApplicationRecord
 	validates :title, :departure_date, :return_date, :deadline_date, :applicant_number, presence: true
 
 
+
   def applied_by?(user)
     event_users.where(user_id: user.id).exists?
   end
@@ -18,5 +19,4 @@ class Event < ApplicationRecord
   def authorized_by?(event)
     (event.applicant_number > event.event_users.count) && event.deadline_date > Time.now
   end
-
 end

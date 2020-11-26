@@ -6,51 +6,35 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-      <% if user_signed_in? %>
-        <%= link_to "トップ", user_path(current_user), class: "nav-link"%>
-        <!--<a class="nav-link" href="#">TOP <span class="sr-only">(current)</span></a>-->
-      <% else %>
-        <%= link_to "トップ",root_path, class: "nav-link"%>
-      <% end %>
-      </li>
       <li class="nav-item">
         <%= link_to "つぶやき", user_posts_path, class: "nav-link"%>
-        <!--<a class="nav-link" href="#">Link</a>-->
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           イベント
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <% if user_signed_in? %>
           <%= link_to "イベント一覧", events_path, class: "dropdown-item"%>
-          <!--<a class="dropdown-item" href="#">Action</a>-->
           <%= link_to "イベント作成", new_event_path, class: "dropdown-item"%>
-        <% end %>
-          <!--<a class="dropdown-item" href="#">Another action</a>-->
-          <div class="dropdown-divider"></div>
-          <%= link_to "参加イベント", "#", class: "dropdown-item"%>
-        </div>
       </li>
-      <% if user_signed_in? %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           ユーザー
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to "ユーザー一覧", users_path, class: "dropdown-item"%>
-          <!--<a class="dropdown-item" href="#">Action</a>-->
-          <%= link_to "参加イベント", "#", class: "dropdown-item"%>
-          <!--<a class="dropdown-item" href="#">Another action</a>-->
-          <div class="dropdown-divider"></div>
-          <%= link_to "プロフィール編集", edit_user_path(current_user), class: "dropdown-item"%>
-        </div>
+      <% if user_signed_in? %>
+            <%= link_to "マイページ", user_path(current_user), class: "dropdown-item"%>
+            <div class="dropdown-divider"></div>
+            <%= link_to "プロフィール編集", edit_user_path(current_user), class: "dropdown-item"%>
+            <%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+            </div>
       </li>
-      <li class="nav-item">
-        <%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", method: :delete %>
+      <li class="nav-item active">
+        <%= link_to "ゲレンデ", ski_slopes_path, class: "nav-link"%>
       </li>
-      <% else %>
+      <% end %>
+      <% unless user_signed_in? %>
       </li>
       <li class="nav-item">
         <%= link_to "会員登録", new_user_registration_path, class: "nav-link" %>
@@ -60,11 +44,5 @@
       </li>
       <% end %>
     </ul>
-
-    <!--実装予定-->
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>

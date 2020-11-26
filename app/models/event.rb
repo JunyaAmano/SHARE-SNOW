@@ -19,5 +19,4 @@ class Event < ApplicationRecord
   def authorized_by?(event)
     (event.applicant_number > event.event_users.count) && event.deadline_date > Time.now
   end
-
 end

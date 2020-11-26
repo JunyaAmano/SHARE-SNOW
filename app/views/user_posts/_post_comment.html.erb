@@ -1,6 +1,7 @@
     <div>
         <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">コメント<%= resource.user_post_comments.count %>件</h6>
         <%= form_with model:[resource,resource2], local:true do |f| %>
+        <%= render "layouts/error_messages", resource: resource2 %>
         <%= f.text_area :comment, class:"form-control", rows:"1", placeholder:"コメント" %>
         <%= f.submit "送信", class:"btn btn-base-1 mt-10" %>
       <% end %>

@@ -19,7 +19,6 @@
             <div class="row">
               <% if @events.any? %>
                 <% @events.each do |event| %>
-                <%# event = Event.find_by(id: applied_event.event_id) %>
                   <%= render "events/event_card", event: event %>
                 <% end %>
               <% else %>
@@ -33,7 +32,6 @@
             <div class="row">
               <% if @events.any? %>
                 <% @events.each do |event| %>
-                <%# event = Event.find_by(id: applied_event.event_id) %>
                   <% if event.authorized_by?(event) %>
                     <%= render "events/event_card", event: event %>
                   <% end %>
@@ -49,7 +47,6 @@
             <div class="row">
               <% if @events.any? %>
                 <% @events.each do |event| %>
-                <%# event = Event.find_by(id: applied_event.event_id) %>
                   <% unless event.authorized_by?(event) %>
                     <%= render "events/event_card", event: event %>
                   <% end %>

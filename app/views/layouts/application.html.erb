@@ -21,13 +21,16 @@
     </div>
     <div id="body">
       <div class="container pl-3 pr-3">
-        <div id="flash">
-          <%= render "layouts/flash" %>
+        <%#= render "layouts/flash" %>
+        <%= yield %>
+        <div id="back-to-top" style="position:fixed;right:25px;bottom:5px">
+          <a href="#"><i class="fas fa-arrow-alt-circle-up fa-5x"></i></a>
         </div>
-          <%= yield %>
       </div>
     </div>
-    <%= render "layouts/footer" %>
+    <div id="header">
+      <%= render "layouts/footer" %>
+    </div>
   </body>
 </html>
 

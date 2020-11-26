@@ -1,5 +1,5 @@
 class SkiSlopesController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :authenticate_user!
 
   def index
@@ -37,8 +37,8 @@ class SkiSlopesController < ApplicationController
   end
 
   private
-
   def slope_params
     params.require(:ski_slope).permit(:title, :description, :area)
   end
+
 end

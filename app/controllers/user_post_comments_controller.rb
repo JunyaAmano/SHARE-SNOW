@@ -11,6 +11,7 @@ class UserPostCommentsController < ApplicationController
     else
       # バリデーションエラーメッセージなし
       redirect_to user_post_path(event)
+    end
   end
 
   def destroy

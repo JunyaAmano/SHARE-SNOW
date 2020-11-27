@@ -1,0 +1,35 @@
+<% provide(:title, "お問い合わせ") %>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <h3 class="border-bottom border-gray pb-2 mb-0">お問い合わせ</h3>
+
+      <%= form_with model: @inquiry, local: true do |f| %>
+        <%= render "layouts/error_messages", resource: @inquiry %>
+        <% flash.each do |message_type, message| %>
+          <%= message %>
+        <% end %>
+        <div class="col-md-12 mb-3"><i class="fa fa-check-square red" aria-hidden="true" ></i>は入力必須項目</div>
+        <div class="field form-group col-md-12">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"お名前" , class: "control-label" %>
+          <%= f.text_field :name, autofocus: true, placeholder:"お名前", class: " form-control" %>
+        </div>
+        <div class="field form-group col-md-12">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"メールアドレス" , class: "control-label" %>
+          <%= f.text_field :email, autofocus: true, placeholder:"メールアドレス", class: " form-control" %>
+        </div>
+        <div class="field form-group col-md-12">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          <%= f.label :"お問い合わせ内容", class: " control-label" %>
+          <%= f.text_area :message, autofocus: true, placeholder:"お問い合わせ内容", class: "form-control" %>
+        </div>
+        <div class="actions col-md-12 border-top border-gray pt-2 mb-0">
+          <%= f.submit "送信",class: 'btn btn-success btn-lg col-md-3' %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -52,6 +52,7 @@
                         <%= f.select :applicant_number_gteq, options_for_select((1..20).to_a), class: 'form-control' , :include_blank => '指定なし' %> ~
                         <%= f.select :applicant_number_lteq, options_for_select((1..20).to_a), class: 'form-control' , :include_blank => '指定なし' %>
                       </div>
+
                     </div>
                     <div class="actions col-md-12 border-top border-gray pt-2 mb-0">
                       <%= f.submit "検索", class: 'btn btn-info btn-lg col' %>
@@ -106,7 +107,9 @@
             <div class="row">
               <% if @q_events.any? %>
                 <% @q_events.each do |event| %>
-                  <%= render "events/event_card", event: event %>
+                  <% unless event.authorized_by?(event) %>
+                    <%= render "events/event_card", event: event %>
+                  <% end %>
                 <% end %>
               <% else %>
                 <a class="pl-2">イベントはありません</a>

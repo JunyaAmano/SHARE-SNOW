@@ -77,8 +77,8 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    event = Event.find(params[:id])
-    unless event.user == current_user
+    user = User.find(params[:id])
+    unless user == current_user
       redirect_to user_path(current_user)
     end
   end

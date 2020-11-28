@@ -76,7 +76,7 @@ class EventsController < ApplicationController
   def applicants
     @event = Event.find(params[:id])
     @user = @event.user
-    @users = @user.event_users
+    @users = @event.event_users
     @applied_events = EventUser.where(user_id: @user.id)
     @organized_events = Event.where(user_id: @user.id)
     @currentUserEntry = Entry.where(user_id: current_user.id)

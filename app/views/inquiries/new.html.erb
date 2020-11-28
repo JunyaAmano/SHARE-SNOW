@@ -6,9 +6,6 @@
 
       <%= form_with model: @inquiry, local: true do |f| %>
         <%= render "layouts/error_messages", resource: @inquiry %>
-        <% flash.each do |message_type, message| %>
-          <%= message %>
-        <% end %>
         <div class="col-md-12 mb-3"><i class="fa fa-check-square red" aria-hidden="true" ></i>は入力必須項目</div>
         <div class="field form-group col-md-12">
           <i class="fa fa-check-square" aria-hidden="true"></i>

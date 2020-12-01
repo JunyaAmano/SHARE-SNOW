@@ -13,7 +13,9 @@ class UserPostsController < ApplicationController
   def create
     @user_post = UserPost.new(post_params)
     @user_post.user_id = current_user.id
-    if @user_post.save
+    @safe_search = Vision.get_image_data(@user_post.image)
+    if @safe_search.value?(:LIKELY) || @safe_search.value?(:VERY_LIKELY)
+      @user_post.save
       redirect_to user_posts_path
     else
       @user_posts = UserPost.all.order(updated_at: :desc)

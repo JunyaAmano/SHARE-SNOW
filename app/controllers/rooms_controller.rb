@@ -18,4 +18,11 @@ class RoomsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+
+  def index
+    @title = "チャットルーム"
+    @title2 = "チャットルームはありません"
+    @rooms = current_user.entries.pluck(:room_id)
+    
+  end
 end

@@ -1,0 +1,3 @@
+<% if user_signed_in? && (current_user.id == user.id) %>
+    <%= link_to "チャットルーム", rooms_path, class:"btn btn-outline-info btn-sm user-show-chat col-md-12" %>
+<% end %>

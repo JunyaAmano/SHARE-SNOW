@@ -12,6 +12,7 @@ class UserPostsController < ApplicationController
 
   def create
     @user_post = UserPost.new(post_params)
+    @user_post.score = Language.get_data(post_params[:content])
     @user_post.user_id = current_user.id
     if @user_post.save
       redirect_to user_posts_path
@@ -56,6 +57,7 @@ class UserPostsController < ApplicationController
 
   def update
     @user_post = UserPost.find(params[:id])
+    @user_post.score = Language.get_data(post_params[:content])
     if @user_post.update(post_params)
       redirect_to user_post_path(@user_post)
     else

@@ -1,0 +1,13 @@
+<% unless post.score.nil? %>
+  <% if post.score.between?(0.6, 1) %>
+    <font color="#2ECC71">AIの分析によるとこの投稿のポジティブ度は<strong><%= ((post.score) * 100).round %></strong>点です</font>
+  <% elsif post.score.between?(0.2, 0.599) %>
+    <font color="#27AE60">AIの分析によるとこの投稿のポジティブ度は<strong><%= ((post.score) * 100).round %></strong>点です</font>
+  <% elsif post.score.between?(-0.199, 0.199) %>
+    <font color="">AIの分析によるとこの投稿のポジティブ度は<strong><%= ((post.score) * 100).round %></strong>点です</font>
+  <% elsif post.score.between?(-0.599, -0.2) %>
+    <font color="#3498DB">AIの分析によるとこの投稿のポジティブ度は<strong><%= ((post.score) * 100).round %></strong>点です</font>
+  <% elsif post.score.between?(-1, -0.6) %>
+    <font color="#298089">AIの分析によるとこの投稿のポジティブ度は<strong><%= ((post.score) * 100).round %></strong>点です</font>
+  <% end %>
+<% end %>

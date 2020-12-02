@@ -1,6 +1,6 @@
   <%= render "users/profile", user: user %>
   <div class="col mt-1 mb-1 border-bottom border-gray">
-    <strong>登録日時</strong> <span><%= l user.created_at %></span>
+    <strong>登録日時</strong> <span><%= user.created_at.strftime("%Y/%m/%d/%H:%M")%></span>
   </div>
   <div class="col mt-1 mb-1 border-bottom border-gray">
     <strong>車の有無</strong>

@@ -13,7 +13,7 @@
 			<% end %>
       <div class="media-body mb-1 small lh-125">
         <div class="mb-1">
-          <strong class="text-gray-dark mr-2" ><%= post.user.name %></strong><%= l post.created_at %>
+          <strong class="text-gray-dark mr-2" ><%= post.user.name %></strong><span><%= time_ago_in_words(post.created_at) %> ago</span>
           <% if post.user == current_user %>
             <%= link_to event_event_comment_path(post.event, post), method: :delete, data: {confirm: "削除しますか？"}  do%>
               <i class="fas fa-trash-alt ml-1" aria-hidden="true"></i>

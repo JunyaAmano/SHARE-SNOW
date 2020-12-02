@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :ski_slopes, only: [:show, :edit, :index, :create, :update]
   resources :messages, only: [:create]
-  resources :rooms, only: [:create,:show]
+  resources :rooms, only: [:create,:show,:index]
   resources :inquiries, only: [:new,:create]
 
 end

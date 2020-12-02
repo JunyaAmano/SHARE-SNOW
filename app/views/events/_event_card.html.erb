@@ -1,7 +1,7 @@
         <div class="col-md-6">
           <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static">
-              <strong class="d-inline-block mb-2 text-primary"><%= l event.departure_date, format: :short%>発 <%= event.ski_slope.title %></strong>
+              <strong class="d-inline-block mb-2 text-primary"><%= event.departure_date.strftime("%m月%d日") %>発 <%= event.ski_slope.title %></strong>
               <h5 class="mb-1"><%= event.title %></h5>
               <div class="row ml-0">
                 <%= attachment_image_tag(event.user, :image, size:'35x35', fallback: "no_image.png", size:'35x35',class: "rounded-circle")%>

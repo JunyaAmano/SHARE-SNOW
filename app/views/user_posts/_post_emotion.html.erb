@@ -1,0 +1,13 @@
+<% unless post.score.nil? %>
+  <% if post.score.between?(0.6, 1) %>
+    <%= image_tag 'greate.png', size:'15x15' %>
+  <% elsif post.score.between?(0.2, 0.599) %>
+    <%= image_tag 'good.png', size:'15x15' %>
+  <% elsif post.score.between?(-0.199, 0.199) %>
+    <%= image_tag 'ok.png', size:'15x15' %>
+  <% elsif post.score.between?(-0.599, -0.2) %>
+    <%= image_tag 'not_ok.png', size:'15x15' %>
+  <% elsif post.score.between?(-1, -0.6) %>
+    <%= image_tag 'bad.png', size:'15x15' %>
+  <% end %>
+<% end %>

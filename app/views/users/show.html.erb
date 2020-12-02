@@ -13,6 +13,7 @@
         </h6>
         <%= render "users/profile_detail", user: @user %>
         <%= render "users/chat_start", isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry, user: @user %>
+        <%= render "rooms/room", user: @user%>
     </div>
   </div>
   <div class=" col-md-7 p-3">
@@ -31,7 +32,7 @@
     <div id="tab1" class="tab-pane active">
       <div class=" my-3 p-3 bg-white rounded shadow-sm">
         <% if @user.user_posts.any? %>
-          <%= render "user_posts/post_index", user_posts: @user.user_posts %>
+          <%= render "user_posts/post_index", user_posts: @user_posts %>
         <% else %>
           <a class="pl-2">つぶやきはありません</a>
         <% end %>

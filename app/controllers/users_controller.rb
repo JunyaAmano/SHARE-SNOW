@@ -6,9 +6,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user_posts = @user.user_posts
-    @applied_events = EventUser.where(user_id: @user.id)
-    @organized_events = Event.where(user_id: @user.id)
+    @user_posts = @user.user_posts.order(updated_at: :desc)
+    @applied_events = EventUser.where(user_id: @user.id).order(updated_at: :desc)
+    @organized_events = Event.where(user_id: @user.id).order(updated_at: :desc)
     if user_signed_in?
       @currentUserEntry = Entry.where(user_id: current_user.id)
       @userEntry = Entry.where(user_id: @user.id)
@@ -58,6 +58,7 @@ class UsersController < ApplicationController
 
   def following
     @title = "フォローユーザー"
+    @title2 = "フォロユーザーはいません"
     @user  = User.find(params[:id])
     @users = @user.following.all
     render 'users/show_follow'
@@ -65,6 +66,7 @@ class UsersController < ApplicationController
 
   def followers
     @title = "フォロワーユーザー"
+    @title2 = "フォロワーはいません"
     @user  = User.find(params[:id])
     @users = @user.followers.all
     render 'users/show_follow'

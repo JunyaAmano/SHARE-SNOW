@@ -8,6 +8,7 @@ class UserPostsController < ApplicationController
     @user_posts = UserPost.all.order(updated_at: :desc)
     @ranking_users_posts = UserPost.joins(:user_post_favorites).where(user_posts: {created_at: Time.now.all_month})
     .group("id").order("count(user_post_favorites.user_post_id) DESC")
+    @score_users_posts = UserPost.all.where(user_posts: {created_at: Time.now.all_month}).order(score: "DESC")
   end
 
   def create

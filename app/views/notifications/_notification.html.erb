@@ -1,0 +1,46 @@
+    <% notifications.each do |notification| %>
+    <% visitor = notification.visitor %>
+    <% visited = notification.visited %>
+    <div class="media text-muted pt-1  border-bottom border-gray">
+      <div class="media-body mb-1 small lh-125">
+        <div class="mb-1">
+          <%= link_to user_path(visitor) do %>
+			      <%= attachment_image_tag(visitor, :image, size:'22x22', fallback: "no_image.png", size:'22x22',class: "rounded-circle" )%>
+            <strong class="text-gray-dark" ><%= visitor.name %></strong>
+          <% end %>
+          さんが
+          <% case notification.action %>
+            <% when "follow" %>
+              あなたをフォローしました
+            <% when "message" %>
+              あなたにチャットを送信しました
+            <% when "apply" %>
+              <%= link_to "あなたのイベント", event_path(notification.event) %>に申込みました
+            <% when "event_comment" %>
+              <% if notification.event_id == visited.id %>
+                <%= link_to "あなたのイベント", event_path(notification.event) %>
+              <% else %>
+                <%= link_to event_path(notification.event) do %>
+		    		      <%= attachment_image_tag(notification.event.user, :image, size:'22x22', fallback: "no_image.png", size:'22x22',class: "rounded-circle" )%>
+                  <strong class="text-gray-dark" ><%= notification.event.user.name %></strong>さんのイベント
+                <% end %>
+              <% end %>
+              <span>にコメントしました</span>
+            <% when "favorite" %>
+              <%= link_to "あなたのつぶやき", user_post_path(notification.user_post) %>にいいねしました
+            <% when "post_comment" %>
+              <% if notification.user_post_id == visited.id %>
+                <%= link_to "あなたのつぶやき", user_post_path(notification.user_post) %>
+              <% else %>
+                <%= link_to user_post_path(notification.user_post) do %>
+		    		      <%= attachment_image_tag(notification.user_post.user, :image, size:'22x22', fallback: "no_image.png", size:'22x22',class: "rounded-circle" )%>
+                  <strong class="text-gray-dark" ><%= notification.user_post.user.name %></strong>さんのつぶやき
+                <% end %>
+              <% end %>
+              <span>にコメントしました</span>
+            <% end %>
+          <span class="text_right"><%= time_ago_in_words(notification.created_at) %> ago</span>
+        </div>
+      </div>
+    </div>
+    <% end %>

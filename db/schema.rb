@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_163328) do
+ActiveRecord::Schema.define(version: 2020_12_12_075701) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -64,6 +64,29 @@ ActiveRecord::Schema.define(version: 2020_12_01_163328) do
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "room_id"
+    t.integer "message_id"
+    t.integer "user_post_id"
+    t.integer "user_post_comment_id"
+    t.integer "event_id"
+    t.integer "event_comment_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_comment_id"], name: "index_notifications_on_event_comment_id"
+    t.index ["event_id"], name: "index_notifications_on_event_id"
+    t.index ["message_id"], name: "index_notifications_on_message_id"
+    t.index ["room_id"], name: "index_notifications_on_room_id"
+    t.index ["user_post_comment_id"], name: "index_notifications_on_user_post_comment_id"
+    t.index ["user_post_id"], name: "index_notifications_on_user_post_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "relationships", force: :cascade do |t|

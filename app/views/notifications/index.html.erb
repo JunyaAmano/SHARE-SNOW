@@ -1,2 +1,16 @@
-<h1>Notifications#index</h1>
-<p>Find me in app/views/notifications/index.html.erb</p>
+<% provide(:title, "新着通知") %>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+      <% if notifications.exists? %>
+        <h6 class="border-bottom border-gray pb-2 mb-0">
+          <%= notifications.count %>件の未読通知があります
+        </h6>
+          <%= render "notifications/notification", notifications: @notifications%>
+      <% else %>
+        <p>新着通知はありません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

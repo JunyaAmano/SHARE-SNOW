@@ -33,8 +33,7 @@ class User < ApplicationRecord
 
   enum riding_style: { スノーボード: 1, スキー: 2, その他: 3}
   enum gender: { 男性: 1, 女性: 2, 非公開: 3}
-  
-  
+
 
     # ユーザーをフォローする
   def follow(other_user)

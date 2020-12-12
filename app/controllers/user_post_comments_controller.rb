@@ -6,7 +6,8 @@ class UserPostCommentsController < ApplicationController
     user_post = UserPost.find(params[:user_post_id])
     comment = current_user.user_post_comments.new(post_comment_params)
     comment.user_post_id = user_post.id
-    if  comment.save
+    if comment.save
+      user_post.create_notification_post_comment!(current_user, comment.id)
       redirect_to user_post_path(user_post)
     else
       # バリデーションエラーメッセージなし

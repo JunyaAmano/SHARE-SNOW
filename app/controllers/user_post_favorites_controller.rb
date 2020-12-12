@@ -6,6 +6,7 @@ class UserPostFavoritesController < ApplicationController
     user_post = UserPost.find(params[:user_post_id])
     favorite = current_user.user_post_favorites.new(user_post_id: user_post.id)
     favorite.save
+    user_post.create_notification_favorite!(current_user)
     redirect_back(fallback_location: root_path)
   end
 

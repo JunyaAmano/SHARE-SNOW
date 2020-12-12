@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'notifications/index'
   get 'rooms/show'
   devise_for :users
   root 'user_posts#top'

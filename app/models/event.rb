@@ -5,9 +5,9 @@ class Event < ApplicationRecord
   belongs_to :ski_slope
   belongs_to :user
 
-  validates :title, presence: true, length: {maximum: 30}
+ validates :title, presence: true, length: {maximum: 30}
 	validates :description, presence: true, length: {maximum: 700}
-	validates :title, :departure_date, :return_date, :deadline_date, :applicant_number, presence: true
+	validates :title, :departure_date, :return_date, :deadline_date, :applicant_number, :user_id, :ski_slope_id, presence: true
 
 
 

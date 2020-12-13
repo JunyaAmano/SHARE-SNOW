@@ -39,7 +39,7 @@ class UserPost < ApplicationRecord
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     temp_ids = UserPostComment.select(:user_id).where(user_post_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|
-      save_notification_post_comment!(current_user, comment_id, temp_id['user_id'])
+      save_notification_post_comment!(current_user, user_post_comment_id, temp_id['user_id'])
     end
     # まだ誰もコメントしていない場合は、投稿者に通知を送る
     if temp_ids.blank?

@@ -4,7 +4,6 @@ class UserPostCommentsController < ApplicationController
 
   def create
     @user_post = UserPost.find(params[:user_post_id])
-    @id_name = "#user-post-comment-link-#{@user_post.id}"
     @post_comment = UserPostComment.new
     comment = current_user.user_post_comments.new(post_comment_params)
     comment.user_post_id = @user_post.id
@@ -18,7 +17,6 @@ class UserPostCommentsController < ApplicationController
 
   def destroy
     @user_post = UserPost.find(params[:user_post_id])
-    @id_name = "#user-post-comment-link-#{@user_post.id}"
     @post_comment = UserPostComment.new
     UserPostComment.find_by(id: params[:id], user_post_id: params[:user_post_id]).destroy
   end

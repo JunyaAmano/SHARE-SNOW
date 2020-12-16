@@ -1,3 +1,1 @@
-$("<%= @id_name %>")
-
- .html("<%= j(render partial: 'user_posts/post_comment', locals: { resource: @user_post, resource2: @post_comment }) %>");
+$("#event-comment-link").html("<%= j(render partial: 'events/event_comment', locals: { resource: @event, resource2: @event_comment }) %>");

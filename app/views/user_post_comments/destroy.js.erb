@@ -1,3 +1,3 @@
-$("<%= @id_name %>")
-
- .html("<%= j(render partial: 'user_posts/post_comment', locals: { resource: @user_post, resource2: @post_comment }) %>");
+$("#user-post-comment-link").html("<%= j(render partial: 'user_posts/post_comment', locals: { resource: @user_post, resource2: @post_comment }) %>");
+$(".post_comments_count").html("コメント<%= @user_post.user_post_comments.count %>件");
+$("#user_post_comment_comment").val("");

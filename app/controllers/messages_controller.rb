@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @room = @message.room
     @message.user_id = current_user.id
-    
+    @id_name = "#message-link-#{@room.id}"
     if @message.save
       @roommembernotme=Entry.where(room_id: @room.id).where.not(user_id: current_user.id)
       @theid=@roommembernotme.find_by(room_id: @room.id)
@@ -22,8 +22,9 @@ class MessagesController < ApplicationController
       end
       if notification.valid?
         notification.save
-      end  
-    redirect_to room_path(@message.room)
+      end
+
+      redirect_to room_path(@message.room)
     else
       redirect_back(fallback_location: root_path)
     end

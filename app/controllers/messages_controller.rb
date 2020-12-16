@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @room = @message.room
     @message.user_id = current_user.id
+    
     if @message.save
       @roommembernotme=Entry.where(room_id: @room.id).where.not(user_id: current_user.id)
       @theid=@roommembernotme.find_by(room_id: @room.id)

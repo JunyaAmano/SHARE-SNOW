@@ -5,7 +5,7 @@
       <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
       <% if notifications.exists? %>
         <h6 class="border-bottom border-gray pb-2 mb-0">
-          <%= notifications.count %>件の未読通知があります
+          <%= notifications.count %>新着通知
         </h6>
           <%= render "notifications/notification", notifications: @notifications%>
       <% else %>

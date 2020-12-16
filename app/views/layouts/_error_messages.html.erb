@@ -1,10 +1,7 @@
 <% if resource.errors.any? %>
   <div id="error_explanation">
-    <div class="row">
-      <div class="col">
         <a>入力内容に誤りがあります</a>
-      </div>
-    </div>
+  </div>
     <!--<h2>-->
       <%#= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
@@ -12,7 +9,7 @@
        %>
     <!--</h2>-->
     <!--<ul>-->
-      <%# resource.errors.full_messages.each do |message| %>-->
+      <%# resource.errors.full_messages.each do |message| %>
         <!--<li><%#= message %></li>-->
       <%# end %>
     <!--</ul>-->

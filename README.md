@@ -28,7 +28,7 @@
 ・ウィンタースポーツに関する情報共有
 ・同じ趣味を持つ仲間探し
 
-## デモ
+## デモ(ver1.1)
 
 #### プレゼン用資料
 https://docs.google.com/presentation/d/14NplvM0I_SRKCRVSNALke38M_aTGcDUPnz-xVFLzTGo/edit?usp=sharing

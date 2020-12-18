@@ -3,21 +3,22 @@ class UserPostCommentsController < ApplicationController
   before_action :correct_user, only: [:destroy]
 
   def create
-    user_post = UserPost.find(params[:user_post_id])
+    @user_post = UserPost.find(params[:user_post_id])
+    @post_comment = UserPostComment.new
     comment = current_user.user_post_comments.new(post_comment_params)
-    comment.user_post_id = user_post.id
+    comment.user_post_id = @user_post.id
     if comment.save
-      user_post.create_notification_post_comment!(current_user, comment.id)
-      redirect_to user_post_path(user_post)
+      @user_post.create_notification_post_comment!(current_user, comment.id)
     else
       # バリデーションエラーメッセージなし
-      redirect_to user_post_path(event)
+      redirect_to user_post_path(@user_post)
     end
   end
 
   def destroy
+    @user_post = UserPost.find(params[:user_post_id])
+    @post_comment = UserPostComment.new
     UserPostComment.find_by(id: params[:id], user_post_id: params[:user_post_id]).destroy
-    redirect_to user_post_path(params[:user_post_id])
   end
 
   private
@@ -32,4 +33,3 @@ class UserPostCommentsController < ApplicationController
     end
   end
 end
-

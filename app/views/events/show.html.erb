@@ -42,36 +42,7 @@
           <span class="text-muted">詳細</span><br>
           <span class="text-muted"><%= @event.description %></span>
         </div>
-        <% if user_signed_in? %>
-          <!--イベント作成したユーザーかの確認-->
-          <% unless current_user == @event.user %>
-            <!--申し込み期限内かつ、募集人数に到達していないか確認-->
-            <% if @event.authorized_by?(@event) %>
-              <!--申し込み済みかの確認-->
-              <% if @event.applied_by?(current_user) %>
-                <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :delete, data: {confirm: "申し込みをキャンセルしますか？キャンセルする場合は必ず主催者様に事前にご連絡お願いします。"}  do %>
-                  <button type="button" class="btn btn-outline-danger">申し込み取消</button>
-                <% end %>
-              <% else %>
-                <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :post, data: {confirm: "参加を申し込みますか？申し込み後にキャンセルされる場合は主催者様に必ずご連絡お願いします。"} do %>
-                <button type="button" class="btn btn-outline-primary"}>申し込み</button>
-                <% end %>
-              <% end %>
-              <!--申し込み期限超え、もしくは参加人数オーバーの場合-->
-            <% else %>
-              <% if @event.applied_by?(current_user) %>
-                <%= link_to event_event_users_path(id: @event.id, event_id: @event.id), method: :delete do %>
-                  <button type="button" class="btn btn-outline-danger">申し込み取消</button>
-                <% end %>
-              <% else %>
-                <p class="pl-2 text-danger col">募集終了</p>
-              <% end %>
-            <% end %>
-          <!--イベントを作成したユーザーの場合-->
-          <% else %>
-            <a></a>
-          <% end %>
-        <% end %>
+        <%= render "events/event_application", event: @event %>
         <%= render "events/event_comment", resource: @event, resource2: @event_comment %>
       </div>
   </div>

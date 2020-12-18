@@ -31,7 +31,7 @@
 ## デモ
 
 #### プレゼン用資料
-https://docs.google.com/presentation/d/14NplvM0I_SRKCRVSNALke38M_aTGcDUPnz-xVFLzTGo/edit#slide=id.gc6fa3c898_0_0
+https://docs.google.com/presentation/d/14NplvM0I_SRKCRVSNALke38M_aTGcDUPnz-xVFLzTGo/edit?usp=sharing
 
 #### デモURL(機能紹介）※字幕あり
 https://www.youtube.com/watch?v=SJo0aMbppjw

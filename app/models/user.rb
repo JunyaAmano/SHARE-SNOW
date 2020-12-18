@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :event_comments, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   validates :name, presence: true, length: {maximum: 10, minimum: 2}
   validates :introduction, length: {maximum: 200}
@@ -31,6 +33,7 @@ class User < ApplicationRecord
 
   enum riding_style: { スノーボード: 1, スキー: 2, その他: 3}
   enum gender: { 男性: 1, 女性: 2, 非公開: 3}
+
 
     # ユーザーをフォローする
   def follow(other_user)
@@ -47,5 +50,17 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-
+  #フォロー通知用メソッド
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      if notification.valid?
+        notification.save
+      end
+    end
+  end
 end

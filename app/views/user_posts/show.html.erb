@@ -46,6 +46,14 @@
         </div>
       </div>
     </div>
+    <div>
+      <h6 class="border-bottom border-gray pb-2 mb-0 mt-2 post_comments_count">コメント<%= @user_post.user_post_comments.count %>件</h6>
+      <%= form_with model:[@user_post, @post_comment], remote:true do |f| %>
+        <%= render "layouts/error_messages", resource: @post_comment %>
+        <%= f.text_area :comment, class:"form-control", rows:"1", placeholder:"コメント" %>
+        <%= f.submit "送信", class:"btn btn-base-1 mt-10" %>
+      <% end %>
+    </div>
     <%= render "user_posts/post_comment", resource: @user_post, resource2: @post_comment %>
     </div>
   </div>

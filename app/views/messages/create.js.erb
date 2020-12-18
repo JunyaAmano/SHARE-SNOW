@@ -1,0 +1,3 @@
+$("#message-link")
+ .html("<%= j(render partial: 'rooms/messages', locals: { messages: @messages }) %>");
+$("#message_message").val("");

@@ -1,11 +1,10 @@
-    <div>
+    <div id="event-comment-link">
         <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">コメント<%= resource.event_comments.count %>件</h6>
         <%= render "layouts/error_messages", resource: resource %>
-        <%= form_with model:[resource,resource2], local:true do |f| %>
+        <%= form_with model:[resource,resource2], remote:true do |f| %>
         <%= f.text_area :comment, class:"form-control", rows:"1", placeholder:"コメント" %>
         <%= f.submit "送信", class:"btn btn-base-1 mt-10" %>
       <% end %>
-    </div>
     <% resource.event_comments.each do |post| %>
     <div class="media text-muted pt-1  border-bottom border-gray">
         <%= link_to user_path(post.user_id) do %>
@@ -15,7 +14,7 @@
         <div class="mb-1">
           <strong class="text-gray-dark mr-2" ><%= post.user.name %></strong><span><%= time_ago_in_words(post.created_at) %> ago</span>
           <% if post.user == current_user %>
-            <%= link_to event_event_comment_path(post.event, post), method: :delete, data: {confirm: "削除しますか？"}  do%>
+            <%= link_to event_event_comment_path(post.event, post), method: :delete, data: {confirm: "削除しますか？"}, remote:true do%>
               <i class="fas fa-trash-alt ml-1" aria-hidden="true"></i>
             <% end %>
           <% end %>
@@ -24,3 +23,4 @@
       </div>
     </div>
     <% end %>
+    </div>

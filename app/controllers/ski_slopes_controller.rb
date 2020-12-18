@@ -3,7 +3,7 @@ class SkiSlopesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @slopes = SkiSlope.all
+    @slopes = SkiSlope.all.order(created_at: :desc)
     @slope = SkiSlope.new
   end
 

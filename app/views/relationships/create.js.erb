@@ -1,0 +1,7 @@
+$("<%= @id_name %>")
+
+ .html("<%= j(render partial: 'users/follow_unfollow', locals: { user: @user }) %>");
+
+
+ $("<%= @id_name2 %>").
+ html('フォロワー :<%= link_to @user.followers.count, followers_user_path(@user) %>');

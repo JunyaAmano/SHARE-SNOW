@@ -76,7 +76,7 @@ class EventsController < ApplicationController
   def applicants
     @event = Event.find(params[:id])
     @user = @event.user
-    @users = @user.event_users.order(created_at: :desc)
+    @users = @event.event_users.order(created_at: :desc)
     @applied_events = EventUser.where(user_id: @user.id).order(created_at: :desc)
     @organized_events = Event.where(user_id: @user.id).order(created_at: :desc)
     @currentUserEntry = Entry.where(user_id: current_user.id).order(created_at: :desc)

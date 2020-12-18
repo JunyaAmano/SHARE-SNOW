@@ -28,14 +28,25 @@
 ・ウィンタースポーツに関する情報共有
 ・同じ趣味を持つ仲間探し
 
+## デモ
+
+#### プレゼン用資料
+https://docs.google.com/presentation/d/14NplvM0I_SRKCRVSNALke38M_aTGcDUPnz-xVFLzTGo/edit#slide=id.gc6fa3c898_0_0
+
+#### デモURL(機能紹介）※字幕あり
+https://www.youtube.com/watch?v=SJo0aMbppjw
+
+#### デモURL(レスポンシブ対応）
+https://www.youtube.com/watch?v=zFxXemFM09w
+
+
 ## 設計書
 
-・ER図
+#### ER図
 ![SHARE_SNOW_ER図](https://user-images.githubusercontent.com/67654114/102649733-12790200-41ad-11eb-84c7-485d4d57ae6c.jpg)
 
-・データベース設計書
-[SHARE SNOW [WBS] - データベース設計書.pdf](https://github.com/JunyaAmano/SHARE-SNOW/files/5717545/SHARE.SNOW.WBS.-.pdf)
-
+#### データベース設計書
+https://docs.google.com/spreadsheets/d/10EmVQAn6wP1_8_sMNmgPCm3Hvikdz4bII0Uqdr2EEu8/edit#gid=1316942085
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1bVIxouIg1VKPKFDdGjF5IGjYTNUu3OvcDHjxCpSibKM/edit?usp=sharing

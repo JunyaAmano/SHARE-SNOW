@@ -27,9 +27,10 @@
 メンバー募集、DM機能、ゲレンデ、ウィンタースポーツに関する情報共有、
 
 ## 設計書
+データベース設計書
+https://docs.google.com/spreadsheets/d/10EmVQAn6wP1_8_sMNmgPCm3Hvikdz4bII0Uqdr2EEu8/edit?usp=sharing
 
 ### 機能一覧
-
 https://docs.google.com/spreadsheets/d/1bVIxouIg1VKPKFDdGjF5IGjYTNUu3OvcDHjxCpSibKM/edit?usp=sharing
 
 ## 開発環境

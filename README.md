@@ -7,8 +7,8 @@
 
 ### サイトテーマ
 
-ユーザー同士が積極的に交流ができる SNS を目指します。
-オンラインゲームでのマッチメイキングのように遊びたいと思った時にメンバーを募り、気軽にゲレンデにいって楽しむのを後押しする機能を実装予定です。具体的にはイベント企画、参加機能、ユーザー間での DM 機能を実装予定です。
+ユーザー同士が積極的に交流ができるSNSを目指します。
+オンラインゲームでのマッチメイキングのように遊びたいと思った時にメンバーを募り、気軽にゲレンデにいって楽しむのを後押しする機能を実装予定です。具体的にはイベント企画、参加機能、ユーザー間でのDM 機能などがメインとなります。
 
 ### テーマを選んだ理由
 
@@ -24,11 +24,18 @@
 
 ### 主な利用シーン
 
-メンバー募集、DM機能、ゲレンデ、ウィンタースポーツに関する情報共有、
+・ゲレンデにいくメンバー募集の企画、イベントの参加
+・ウィンタースポーツに関する情報共有
+・同じ趣味を持つ仲間探し
 
 ## 設計書
-データベース設計書
-https://docs.google.com/spreadsheets/d/10EmVQAn6wP1_8_sMNmgPCm3Hvikdz4bII0Uqdr2EEu8/edit?usp=sharing
+
+・ER図
+![SHARE_SNOW_ER図](https://user-images.githubusercontent.com/67654114/102649733-12790200-41ad-11eb-84c7-485d4d57ae6c.jpg)
+
+・データベース設計書
+[SHARE SNOW [WBS] - データベース設計書.pdf](https://github.com/JunyaAmano/SHARE-SNOW/files/5717545/SHARE.SNOW.WBS.-.pdf)
+
 
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1bVIxouIg1VKPKFDdGjF5IGjYTNUu3OvcDHjxCpSibKM/edit?usp=sharing

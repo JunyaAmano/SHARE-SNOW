@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @user_posts = @user.user_posts.order(updated_at: :desc)
+    @user_posts = @user.user_posts.order(created_at: :desc)
     @applied_events = EventUser.where(user_id: @user.id).order(updated_at: :desc)
     @organized_events = Event.where(user_id: @user.id).order(updated_at: :desc)
     if user_signed_in?
@@ -32,13 +32,13 @@ class UsersController < ApplicationController
 
   def index
     @title = "ユーザー一覧"
-    @users = User.all.order(updated_at: :desc)
-    @snowboard_users = User.where(riding_style: "スノーボード").order(updated_at: :desc)
-    @ski_users = User.where(riding_style: "スキー").order(updated_at: :desc)
+    @users = User.all.order(created_at: :desc)
+    @snowboard_users = @users.where(riding_style: "スノーボード")
+    @ski_users = @users.where(riding_style: "スキー")
     @ski_slopes = SkiSlope.all
     # 検索タブの検索結果用
     @q = User.ransack(params[:q])
-    @q_users = @q.result(distinct: true)
+    @q_users = @q.result(distinct: true).order(created_at: :desc)
   end
 
   def edit
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     @title = "フォローユーザー"
     @title2 = "フォロユーザーはいません"
     @user  = User.find(params[:id])
-    @users = @user.following.all
+    @users = @user.following.all.order(created_at: :desc)
     render 'users/show_follow'
   end
 
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     @title = "フォロワーユーザー"
     @title2 = "フォロワーはいません"
     @user  = User.find(params[:id])
-    @users = @user.followers.all
+    @users = @user.followers.all.order(created_at: :desc)
     render 'users/show_follow'
   end
 

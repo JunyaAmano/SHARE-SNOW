@@ -44,7 +44,7 @@ class EventsController < ApplicationController
     @ski_slopes = SkiSlope.all
     # 検索タブの検索結果用
     @q = Event.ransack(params[:q])
-    @q_events = @q.result(distinct: true)
+    @q_events = @q.result(distinct: true).order(updated_at: :desc)
   end
 
   def edit
@@ -76,10 +76,10 @@ class EventsController < ApplicationController
   def applicants
     @event = Event.find(params[:id])
     @user = @event.user
-    @users = @event.event_users
-    @applied_events = EventUser.where(user_id: @user.id)
-    @organized_events = Event.where(user_id: @user.id)
-    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @users = @user.event_users.order(created_at: :desc)
+    @applied_events = EventUser.where(user_id: @user.id).order(created_at: :desc)
+    @organized_events = Event.where(user_id: @user.id).order(created_at: :desc)
+    @currentUserEntry = Entry.where(user_id: current_user.id).order(created_at: :desc)
     @userEntry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
       @currentUserEntry.each do |cu|

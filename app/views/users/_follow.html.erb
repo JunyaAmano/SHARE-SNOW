@@ -1,23 +1,15 @@
-<div id="follow-link-<%= user.id %>">
 <% if user_signed_in? %>
   <% unless current_user == user %>
+    <div id="follow-link-<%= user.id %>">
     <% if current_user.following?(user) %>
-      <%= form_with(model: current_user.active_relationships.find_by(followed_id: user.id), html: { method: :delete }, remote: true) do |f| %>
-        <%= button_tag :type => "submit", :class =>"btn btn-outline-danger btn-sm" do %>
-        <i class="far fa-user"></i>フォロー解除<% end %>
-      <% end %>
+      <%= render "users/follow_unfollow", user: user %>
     <% else %>
-      <%= form_with(model: current_user.active_relationships.build, remote: true) do |f| %>
-      <a><div><%= hidden_field_tag :followed_id, user.id %></div>
-        <%= button_tag :type => "submit", :class =>"btn btn-outline-primary btn-sm" do %>
-        <i class="fas fa-user"></i>フォロー
-      <% end %></a>
-      <% end %>
+      <%= render "users/follow_follow", user: user %>
     <% end %>
+    </div>
   <% else %>
     <%= link_to user_path(current_user), class: "btn btn-default btn-sm" do %>
       <i class="fas fa-user"></i>プロフィール
     <% end %>
   <% end %>
 <% end %>
-</div>

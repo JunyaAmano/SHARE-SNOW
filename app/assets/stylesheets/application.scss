@@ -59,3 +59,23 @@
   background :none;
   color:black;
 }
+
+#myCarousel {
+  height: 400px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.carousel-item {
+  height: 400px;
+}
+
+
+.carousel-item3 {
+ background-image: image-url("snow-background.jpg");
+ background-size: cover;
+}

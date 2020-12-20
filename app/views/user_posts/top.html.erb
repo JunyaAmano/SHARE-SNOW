@@ -1,8 +1,4 @@
 <% provide(:title, "トップ") %>
-
-
-
-
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class=""></li>
@@ -55,18 +51,10 @@
         </div>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
   </div>
 <div class="row">
   <div class="col-md-12">
-      <h6 class="border-bottom border-gray pb-2 mb-0">新着イベント</h6>
+      <h3 class="border-bottom border-gray pb-2 mb-0">新着イベント</h3>
       <div class="row mb-2 mt-2">
         <% @events.each do |event| %>
           <%= render "events/event_card", event: event %>
@@ -77,7 +65,7 @@
 <div class="row">
     <div class="col-md-8">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-0">新着投稿</h6>
+          <h3 class="border-bottom border-gray pb-2 mb-0">新着投稿</h3>
           <%= render "post_index", user_posts: @user_posts %>
           <small class="d-block text-right mt-3">
             <%= link_to "All suggestions", user_posts_path %>
@@ -86,7 +74,7 @@
     </div>
     <div class="col-md-4">
       <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">新着ユーザー</h6>
+        <h3 class="border-bottom border-gray pb-2 mb-0">新着ユーザー</h3>
         <% @users.each do |user| %>
           <%= render "users/profile", user: user%>
         <% end %>

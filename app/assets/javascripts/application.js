@@ -36,7 +36,7 @@ $(function(){
 
   //#back-to-topがクリックされたら上に戻る
   // animateメソッドを使用
-  $('#back-to-top a').click(function() {
+  $('#back-to-top').click(function() {
       $('html, body').animate({
           scrollTop:0
       }, 800);

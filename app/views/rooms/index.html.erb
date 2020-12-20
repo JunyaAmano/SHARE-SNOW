@@ -19,9 +19,15 @@
                 <% end %>
                 <div class="media-body mb-1 small lh-125">
                   <div class="d-flex justify-content-between align-items-center w-100 mb-1">
-                    <strong class="text-gray-dark mr-2" ><%= entry.user.name %></strong><%= time_ago_in_words(Message.find_by(id: entry.room.message_ids.last).created_at) %> ago
+                    <strong class="text-gray-dark mr-2" ><%= entry.user.name %></strong><% unless Message.find_by(id: entry.room.message_ids.last).nil? %><%= time_ago_in_words(Message.find_by(id: entry.room.message_ids.last).created_at) %> ago <% end %>
                   </div>
-                  <a class="ml-1 inline-block"><%= Message.find_by(id: entry.room.message_ids.last)&.message %></a>
+                  <a class="ml-1 inline-block">
+                    <% unless Message.find_by(id: entry.room.message_ids.last).nil? %>
+                      <%= Message.find_by(id: entry.room.message_ids.last)&.message %>
+                    <% else %>
+                      <a>メッセージはありません</a>
+                    <% end %>
+                  </a>
                 </div>
               </div>
               <% end %>

@@ -23,5 +23,6 @@ class RoomsController < ApplicationController
     @title = "チャットルーム"
     @title2 = "チャットルームはありません"
     @rooms = current_user.entries.pluck(:room_id)
+
   end
 end

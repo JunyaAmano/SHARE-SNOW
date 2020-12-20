@@ -1,9 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <%= link_to "SHARE SNOW", root_path, class: "navbar-brand"%>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -16,6 +12,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to "イベント一覧", events_path, class: "dropdown-item"%>
           <%= link_to "イベント作成", new_event_path, class: "dropdown-item"%>
+        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -28,25 +25,25 @@
             <div class="dropdown-divider"></div>
             <%= link_to "プロフィール編集", edit_user_path(current_user), class: "dropdown-item"%>
             <%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item", method: :delete %>
-            </div>
+        </div>
       </li>
       <li class="nav-item active">
         <%= link_to "ゲレンデ", ski_slopes_path, class: "nav-link"%>
       </li>
       <li class="nav-item active">
         <% if unchecked_notifications.any? %>
-          <%= link_to notifications_path, class: "nav-link" do%>
-          <span>通知
-            <i class="fas.fa-circle.n-circle.fa-stack-1x"></i>
-          </span>
+          <%= link_to notifications_path, class: "nav-link" do %>
+            <i class="fa fa-bell" style="color: gold;"></i>
+            <span>新着通知</span>
           <% end %>
         <% else %>
-          <%= link_to "新着通知", notifications_path, class: "nav-link" %>
+          <%= link_to notifications_path, class: "nav-link" do %>
+            <span>通知</span>
+          <% end %>
         <% end %>
       </li>
       <% end %>
       <% unless user_signed_in? %>
-      </li>
       <li class="nav-item">
         <%= link_to "会員登録", new_user_registration_path, class: "nav-link" %>
       </li>
@@ -56,4 +53,7 @@
       <% end %>
     </ul>
   </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 </nav>

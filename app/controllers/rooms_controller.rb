@@ -22,6 +22,13 @@ class RoomsController < ApplicationController
   def index
     @title = "チャットルーム"
     @title2 = "チャットルームはありません"
-    @rooms = current_user.entries.pluck(:room_id)
+    @rooms = current_user.rooms
+    @user = current_user
+    @currentEntries = @current_user.entries
+    myRoomIds = []
+    @currentEntries.each do | entry |
+      myRoomIds << entry.room.id
+    end
+    @anotherEntries = Entry.where(room_id: myRoomIds).where('user_id != ?', @user.id)
   end
 end

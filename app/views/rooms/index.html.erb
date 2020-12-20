@@ -4,26 +4,33 @@
 <div class="row">
   <div class="col-md-4">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <%= render "users/profile_detail", user: user %>
+      <%= render "users/profile_detail", user: current_user %>
     </div>
   </div>
   <div class="col-md-8">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0"><%= @title %></h6>
-        <% if @rooms.any? %>
-          <% @rooms.each do |room| %>
-            <% user = User.find_by(id: .user_id) %>
-            <%= render "users/profile", user: user%>
+      <h6 class="border-bottom border-gray pb-2 mb-0"><%= @title %></h6>
+        <% if @anotherEntries.any? %>
+            <div id="message-link">
+              <% @anotherEntries.each do |entry| %>
+              <div class="media text-muted pt-1  border-bottom border-gray">
+                <%= link_to room_path(entry.room) do %>
+                  <%= attachment_image_tag(entry.user, :image, size:'40x40', fallback: "no_image.png", size:'40x40' , class: "rounded-circle")%>
+                <% end %>
+                <div class="media-body mb-1 small lh-125">
+                  <div class="mb-1">
+                    <strong class="text-gray-dark mr-2" ><%= entry.user.name %></strong><%= time_ago_in_words(Message.find_by(id: entry.room.message_ids.last).created_at) %> ago
+                  </div>
+                  <a class="ml-1 inline-block"><%= Message.find_by(id: entry.room.message_ids.last)&.message %></a>
+                </div>
+              </div>
+              <% end %>
+            <% else %>
+              <div class="col mt-1">
+                <strong><%= @title2 %></strong>
+              </div>
             <% end %>
-        <% else %>
-            <div class="col mt-1">
-              <strong><%= title2 %></strong>
             </div>
-        <% end %>
     </div>
   </div>
 </div>
-
-
-
-<%= render "users/user_show", title: @title, title2: @title2, users: @rooms, user: current_user %>

@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'notifications/index'
-  get 'rooms/show'
   devise_for :users
   root 'user_posts#top'
+  mount ActionCable.server => "/cable"
 
   resources :user_posts, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
     resources :user_post_comments, only: [:create, :destroy]
@@ -30,5 +29,7 @@ Rails.application.routes.draw do
   resources :rooms, only: [:create,:show,:index]
   resources :inquiries, only: [:new,:create]
   resources :notifications, only: [:index]
+  resources :groups, only: [:index, :show, :create]
+  resources :chats, only: [:create]
 
 end

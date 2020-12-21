@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   attachment :image
-
   belongs_to :ski_slope
   has_many :user_posts, dependent: :destroy
   has_many :user_post_comments, dependent: :destroy
@@ -27,6 +26,9 @@ class User < ApplicationRecord
   has_many :rooms, through: :entries
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  has_many :chats
+  has_many :group_users
+  has_many :groups, through: :group_users
 
   validates :name, presence: true, length: {maximum: 10, minimum: 2}
   validates :introduction, length: {maximum: 200}

@@ -1,0 +1,15 @@
+<h1>Groups#index</h1>
+<p>Find me in app/views/groups/index.html.erb</p>
+<%= form_with model: @group, local: true do |f| %>
+   <%= f.label :name %><br />
+   <p><%= f.text_field :name %></p>
+   <p><%= f.submit "ルームの作成" %><p>
+ <% end %>
+
+ <ul class="family_lists">
+  <% @groups.each do |group| %>
+    <li class="family_list">
+      <%= link_to "#{group.name}", group_path(group), class:"family_button" %>
+    </li>
+  <% end %>
+</ul>

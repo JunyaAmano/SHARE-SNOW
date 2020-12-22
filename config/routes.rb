@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'groups/show'
   get 'notifications/index'
   get 'rooms/show'
   devise_for :users

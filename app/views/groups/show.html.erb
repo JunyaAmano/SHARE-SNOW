@@ -1,0 +1,23 @@
+<h1>Chat room</h1>
+
+<div id="messages">
+  <%= render @messages %>
+</div>
+<form>
+  <label>Say something:</label><br>
+  <input type="text" data-behavior="group_speaker">
+</form>
+
+
+
+
+
+<div id="messages", data-group_id="<%= @group.id %>">
+  <%= render @messages %>
+</div>
+<div class="input">
+  <form>
+    <label>post</label>
+    <input type="text" data-behavior="group_speaker">
+  </form>
+</div>

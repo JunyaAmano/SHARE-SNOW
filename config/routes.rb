@@ -31,5 +31,6 @@ Rails.application.routes.draw do
   resources :rooms, only: [:create,:show,:index]
   resources :inquiries, only: [:new,:create]
   resources :notifications, only: [:index]
+  resources :groups, only: [:index]
 
 end

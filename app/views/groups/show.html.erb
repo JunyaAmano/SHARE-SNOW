@@ -1,0 +1,10 @@
+<div id="chats", data-group_id="<%= @group.id %>">
+  <%#= render "groups/chat", messages: @chats %>
+  <%= render partial: "chat", collection: @chats %>
+</div>
+<div class="input">
+  <form>
+    <label>post</label>
+    <input type="text" data-behavior="group_speaker" data-user="<%= current_user.id %>" data-group="<%= @group.id %>">
+  </form>
+</div>

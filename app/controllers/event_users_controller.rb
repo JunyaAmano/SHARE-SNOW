@@ -14,4 +14,5 @@ class EventUsersController < ApplicationController
     applicant = current_user.event_users.find_by(event_id: @event.id)
     applicant.destroy
   end
+  
 end

@@ -18,6 +18,7 @@
 //= require turbolinks
 //= require_tree .
 
+
 $(function(){
   // #back-to-topを消す
   $("#back-to-top").hide();

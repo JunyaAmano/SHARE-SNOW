@@ -1,0 +1,19 @@
+<% provide(:title, @group.name) %>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0">
+          <%= @group.name %>
+        </h6>
+      <div id="chats" data-group_id="<%= @group.id %>">
+      <%#= render "groups/chat", messages: @chats %>
+        <%= render partial: "chat", collection: @chats %>
+      </div>
+      <div class="input">
+        <form>
+          <input type="text" class="col-md-12" data-behavior="group_speaker" data-user="<%= current_user.id %>" data-group="<%= @group.id %>" placeholder="Enterで送信">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

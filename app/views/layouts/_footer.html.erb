@@ -1,5 +1,5 @@
-<footer class="container mt-3 ">
-  <div class="d-block d-lg-none">
+<footer class="container">
+  <div class="d-block d-lg-none mt-5">
     <nav class="navbar nav fixed-bottom navbar-light bg-light">
       <li class="nav-item">
         <%= link_to user_posts_path, class: "nav-link" do %>
@@ -7,7 +7,7 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to users_path, class: "nav-link" do %>
+        <%= link_to groups_path, class: "nav-link" do %>
           <i class="fas fa-users" style="color: grey;"></i>
         <% end %>
       </li>
@@ -36,7 +36,7 @@
       <% end %>
     </nav>
   </div>
-  <div class="d-none d-lg-block">
+  <div class="d-none d-lg-block mt-5">
     <p>© 2020 JunyaAmano <%= link_to "問い合わせ", new_inquiry_path %> · <a href="#">Terms</a></p>
   </div>
 </footer>

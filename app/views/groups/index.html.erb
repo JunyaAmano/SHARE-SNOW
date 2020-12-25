@@ -1,0 +1,29 @@
+<% provide(:title, "チャットルーム一覧") %>
+
+<div class="row">
+　<div class="col-md-4">
+    <%= render "groups/group_new", group: @group %>
+</div>
+  <div class=" col-md-7 p-3">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <h6 class="border-bottom border-gray pb-2 mb-0">チャットルーム</h6>
+      <div id="message-link">
+        <% @groups.each do |group| %>
+          <div class="media text-muted pt-1  border-bottom border-gray">
+            <%= link_to group_path(group) do %>
+              <%= attachment_image_tag(group.user, :image, size:'40x40', fallback: "no_image.png", size:'40x40' , class: "rounded-circle")%>
+            <% end %>
+            <div class="media-body mb-1 small lh-125">
+              <div class="d-flex justify-content-between align-items-center w-100 mb-1">
+                <strong class="text-gray-dark mr-2" ><%= group.user.name %></strong><%= time_ago_in_words(group.created_at) %> ago
+              </div>
+              <a class="ml-1 inline-block">
+                <%= group.name %>
+              </a>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

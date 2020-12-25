@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_075701) do
+ActiveRecord::Schema.define(version: 2020_12_22_170439) do
+
+  create_table "chats", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "group_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -48,6 +56,13 @@ ActiveRecord::Schema.define(version: 2020_12_12_075701) do
     t.string "image_id"
     t.integer "user_id"
     t.integer "ski_slope_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "inquiries", force: :cascade do |t|

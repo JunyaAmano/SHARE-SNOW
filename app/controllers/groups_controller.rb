@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @chats = @group.chats.order(updated_at: :desc)
+    @chats = @group.chats.includes(:user).last(100)
   end
 
   def index

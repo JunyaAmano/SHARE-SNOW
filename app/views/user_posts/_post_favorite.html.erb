@@ -1,4 +1,4 @@
-<div id="user_post_favorite-<%= post.id %>">
+<div id="user_post_favorite-<%= post.id %>" class="user_post_favorite">
   <% if user_signed_in? %>
     <% if post.favorited_by?(current_user) %>
       <%= link_to user_post_user_post_favorites_path(id: post.id, user_post_id: post.id), method: :delete, remote: true do %>

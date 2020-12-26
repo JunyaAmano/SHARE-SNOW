@@ -2,15 +2,7 @@
 
 <div class="row">
   <div class="col-md-4">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">
-            プロフィール
-            <% if @user == current_user %>
-                <%= link_to edit_user_path(@user) do %>
-                <i class="fas fa-edit ml-1" aria-hidden="true"></i>
-                <% end %>
-            <% end %>
-        </h6>
+    <div class="my-3 p-3 bg-white rounded shadow-sm sidebar_fixed">
         <%= render "users/profile_detail", user: @user %>
         <%= render "users/chat_start", isRoom: @isRoom, roomId: @roomId, room: @room, entry: @entry, user: @user %>
         <%= render "rooms/room", user: @user%>
@@ -19,13 +11,13 @@
   <div class=" col-md-7 p-3">
     <ul class="nav nav-pills nav-fill">
       <li class="nav-item">
-        <a href="#tab1" class="nav-link active small" data-toggle="tab">つぶやき</a>
+        <a href="#tab1" class="nav-link active small" data-toggle="tab">つぶやき<span class="badge badge-light"><%= @user_posts.count %></span></a>
       </li>
       <li class="nav-item">
-        <a href="#tab2" class="nav-link small" data-toggle="tab">参加イベント</a>
+        <a href="#tab2" class="nav-link small" data-toggle="tab">参加イベント<span class="badge badge-light"><%= @applied_events.count %></span></a>
       </li>
       <li class="nav-item">
-        <a href="#tab3" class="nav-link small" data-toggle="tab">主催イベント</a>
+        <a href="#tab3" class="nav-link small" data-toggle="tab">主催イベント<span class="badge badge-light"><%= @organized_events.count %></span></a>
       </li>
     </ul>
     <div class="tab-content">

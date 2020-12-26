@@ -1,9 +1,13 @@
     <div id="event-comment-link">
-        <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">コメント<%= resource.event_comments.count %>件</h6>
-        <%= render "layouts/error_messages", resource: resource %>
-        <%= form_with model:[resource,resource2], remote:true do |f| %>
+      <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">コメント<%= resource.event_comments.count %>件</h6>
+      <%= render "layouts/error_messages", resource: resource %>
+      <%= form_with model:[resource,resource2], remote:true do |f| %>
+      <div class="input-group">
         <%= f.text_area :comment, class:"form-control", rows:"1", placeholder:"コメント" %>
-        <%= f.submit "送信", class:"btn btn-base-1 mt-10" %>
+        <div class="input-group-append">
+          <%= f.submit "送信", class:"btn btn-outline-secondary" %>
+        </div>
+      </div>
       <% end %>
     <% resource.event_comments.each do |post| %>
     <div class="media text-muted pt-1  border-bottom border-gray">

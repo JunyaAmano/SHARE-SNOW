@@ -1,20 +1,35 @@
+
+
+
 <div id="user-post-comment-link">
-    <% resource.user_post_comments.each do |post| %>
-    <div class="media text-muted pt-1  border-bottom border-gray">
-        <%= link_to user_path(post.user_id) do %>
-				<%= attachment_image_tag(post.user, :image, size:'50x50', fallback: "no_image.png", size:'50x50',class: "rounded-circle" )%>
-			<% end %>
-      <div class="media-body mb-1 small lh-125">
-        <div class="mb-1">
-          <strong class="text-gray-dark mr-2" ><%= post.user.name %></strong><%= time_ago_in_words(post.created_at) %> ago
-          <% if post.user == current_user %>
-            <%= link_to user_post_user_post_comment_path(post.user_post, post), method: :delete, data: {confirm: "削除しますか？"}, remote:true do%>
-              <i class="fas fa-trash-alt ml-1" aria-hidden="true"></i>
-            <% end %>
-          <% end %>
-        </div>
-        <a class="ml-1 inline-block"><%= post.comment %></a>
+  <h6 class="pb-2 mb-0 mt-2 post_comments_count">コメント<%= resource.user_post_comments.count %>件</h6>
+    <%= form_with model:[resource, resource2], remote:true do |f| %>
+      <%= render "layouts/error_messages", resource: resource2 %>
+    <div class="input-group">
+      <%= f.text_area :comment, class:"form-control", rows:"1", placeholder:"コメント" %>
+      <div class="input-group-append">
+        <%= f.submit "送信", class:"btn btn-outline-secondary" %>
       </div>
     </div>
-  <% end %>
+    <% end %>
+  <div>
+      <% resource.user_post_comments.each do |post| %>
+      <div class="media text-muted pt-1  border-bottom border-gray">
+          <%= link_to user_path(post.user_id) do %>
+  				<%= attachment_image_tag(post.user, :image, size:'50x50', fallback: "no_image.png", size:'50x50',class: "rounded-circle" )%>
+  			<% end %>
+        <div class="media-body mb-1 small lh-125">
+          <div class="mb-1">
+            <strong class="text-gray-dark mr-2" ><%= post.user.name %></strong><%= time_ago_in_words(post.created_at) %> ago
+            <% if post.user == current_user %>
+              <%= link_to user_post_user_post_comment_path(post.user_post, post), method: :delete, data: {confirm: "削除しますか？"}, remote:true do%>
+                <i class="fas fa-trash-alt ml-1" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <a class="ml-1 inline-block"><%= post.comment %></a>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

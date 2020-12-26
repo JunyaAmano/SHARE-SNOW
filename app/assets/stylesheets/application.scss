@@ -75,3 +75,11 @@
 	height: 100%;
 	object-fit: cover;
 }
+
+.sidebar_fixed {
+  position: sticky;
+  top: 60px;
+}
+.sidebar_content {
+  margin-bottom: 100px;
+}

@@ -2,24 +2,20 @@
 
 <div class="row">
   <div class="col-md-4">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">チャットメンバー</h6>
-        <% @entries.each do |entry| %>
-          <% user = User.find_by(id: entry.user_id) %>
-          <%= render "users/profile", user: user%>
-        <% end %>
+    <div class="my-3 p-3 bg-white rounded shadow-sm sidebar_fixed d-none d-lg-block">
+      <%= render "rooms/index", title: @title, title2: @title2, anotherEntries: @anotherEntries %>
     </div>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-7">
     <div class="my-3 p-3 bg-white rounded shadow-sm">
-      <h6 class="border-bottom border-gray pb-2 mb-0">チャット</h6>
-      <div class="chats">
+      <h6 class="border-bottom border-gray pb-2 mb-0">メッセージ</h6>
+      <div id="message_room">
         <%= render "rooms/messages", messages: @messages, room: @room %>
         <div class="posts mt-3">
           <%= form_with model: @message, remote:true do |f| %>
             <%= f.text_field :message, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field col-md-8 " %>
             <%= f.hidden_field :room_id, value: @room.id %>
-            <%= f.submit "投稿",class: 'form-submit col-md-1'%>
+            <%= f.submit "送信",class: 'form-submit col-md-1 btn-info'%>
           <% end %>
         </div>
       </div>

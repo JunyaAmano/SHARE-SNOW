@@ -4,7 +4,9 @@
   <% end %>
   <div class="media-body pb- mb-0 small lh-125">
     <div class="d-flex justify-content-between align-items-center w-100 mb-1">
-    <strong class="text-gray-dark"><%= user.name %></strong>
+    <strong class="text-gray-dark">
+      <%= user.name %>
+    </strong>
     <%= render "users/follow", user: user %>
     </div>
     <span class="ml-1"><%= user.gender %></span><span class="ml-1"><%= user.age %>歳</span><span class="ml-1"><%= user.riding_style %></span>

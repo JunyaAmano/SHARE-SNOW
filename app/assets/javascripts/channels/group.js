@@ -1,3 +1,4 @@
+
 document.addEventListener('turbolinks:load', () => {
   jQuery(document).ready(function(){
 

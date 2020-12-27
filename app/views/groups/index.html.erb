@@ -1,0 +1,12 @@
+<% provide(:title, "チャットルーム一覧") %>
+
+<div class="row">
+　<div class="col-md-4 sidebar_fixed">
+    <%= render "groups/group_new", group: @group %>
+</div>
+  <div class="col-md-7">
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <%= render "groups/index", groups: @groups %>
+    </div>
+  </div>
+</div>

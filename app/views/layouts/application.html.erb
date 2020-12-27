@@ -4,7 +4,6 @@
   <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,7 +19,7 @@
       <%= render "layouts/header" %>
     </div>
     <div id="body">
-      <div class="container pl-3 pr-3">
+      <div class="container">
         <%#= render "layouts/flash" %>
         <%= yield %>
         <div id="back-to-top" style="position:fixed;right:25px;bottom:60px">
@@ -28,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div id="header">
+    <div id="footer">
       <%= render "layouts/footer" %>
     </div>
   </body>

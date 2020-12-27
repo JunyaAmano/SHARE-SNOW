@@ -9,6 +9,16 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @title = "メッセージ一覧"
+    @title2 = "メッセージはありません"
+    @rooms = current_user.rooms
+    @user = current_user
+    @currentEntries = @current_user.entries
+    myRoomIds = []
+    @currentEntries.each do | entry |
+      myRoomIds << entry.room.id
+    end
+    @anotherEntries = Entry.where(room_id: myRoomIds).where('user_id != ?', @user.id)
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id,room_id: @room.id).present?
       @messages = @room.messages
@@ -20,8 +30,8 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @title = "チャットルーム"
-    @title2 = "チャットルームはありません"
+    @title = "メッセージ一覧"
+    @title2 = "メッセージはありません"
     @rooms = current_user.rooms
     @user = current_user
     @currentEntries = @current_user.entries

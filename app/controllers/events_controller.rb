@@ -35,16 +35,16 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all.order(updated_at: :desc)
+    @events = Event.all.order(created_at: :desc)
     if user_signed_in?
       unless current_user.ski_slope.nil?
-        @home_events = current_user.ski_slope.events.order(updated_at: :desc)
+        @home_events = current_user.ski_slope.events.order(created_at: :desc)
       end
     end
     @ski_slopes = SkiSlope.all
     # 検索タブの検索結果用
     @q = Event.ransack(params[:q])
-    @q_events = @q.result(distinct: true).order(updated_at: :desc)
+    @q_events = @q.result(distinct: true).order(created_at: :desc)
   end
 
   def edit
@@ -97,6 +97,11 @@ class EventsController < ApplicationController
       end
     end
     render 'events/show_applicant'
+  end
+
+  def destroy
+    Event.find_by(id: params[:id]).destroy
+    redirect_to events_path
   end
 
   private

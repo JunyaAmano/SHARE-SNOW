@@ -2,41 +2,19 @@
 
 
 <div class="row">
-  <% if user_signed_in? %>
   <div class="col-md-4">
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">
-            プロフィール
-            <% if current_user %>
-                <%= link_to edit_user_path(current_user) do %>
-                <i class="fas fa-edit ml-1" aria-hidden="true"></i>
-                <% end %>
-            <% end %>
-        </h6>
+    <div class="sidebar_fixed">
+    <% if user_signed_in? %>
+    <div class="my-3 p-3 bg-white rounded shadow-sm d-none d-lg-block">
       <%= render "users/profile_detail", user: current_user %>
     </div>
-  </div>
-  <% end %>
-  <div class=" col-md-8 p-3">
-    <ul class="nav nav-pills nav-fill">
-      <li class="nav-item">
-        <a href="#tab1" class="nav-link active small" data-toggle="tab">検索</a>
-      </li>
-      <li class="nav-item">
-        <a href="#tab2" class="nav-link small" data-toggle="tab">スノーボード</a>
-      </li>
-      <li class="nav-item">
-        <a href="#tab3" class="nav-link small" data-toggle="tab">スキー</a>
-      </li>
-    </ul>
-    <div class="tab-content">
-        <div id="tab1" class="tab-pane active">
+    <% end %>
           <div class="my-3 p-3 bg-white rounded shadow-sm">
             <div class="row">
               <div class="col-md-12">
+                <h6 class="border-bottom border-gray pb-2 mb-2">ユーザー検索</h6>
                 <%= search_form_for(@q) do |f| %>
                   <div class="row">
-                    <div class="col-md-4">
                       <div class="field form-group col-md-12">
                         <%= f.label :"ユーザー", class: "control-label" %>
                         <%= f.search_field :name_cont %>
@@ -45,8 +23,6 @@
                         <%= f.label :"自己紹介" %>
                         <%= f.search_field :introduction_cont %>
                       </div>
-                    </div>
-                    <div class="col-md-8">
                       <div class="field form-group col-md-12">
                         <%= f.label :"性別", class: " control-label" %>
                       　<%= f.radio_button :gender_eq, '', checked: true %>
@@ -59,17 +35,6 @@
                         <%= f.label :gender, "非公開", {value: :非公開, style: "display: inline-block;"} %>
                       </div>
 
-                      <div class="field form-group col-md-12">
-                        <%= f.label :"スタイル", class: " control-label" %>
-                      　<%= f.radio_button :riding_style_eq, '', checked: true %>
-                        <%= f.label :riding_style, "指定なし", {value: :指定なし, style: "display: inline-block;"} %>
-                        <%= f.radio_button :riding_style_eq, 1 %>
-                        <%= f.label :riding_style, "スノーボード", {value: :スノーボード, style: "display: inline-block;"} %>
-                        <%= f.radio_button :riding_style_eq, 2 %>
-                        <%= f.label :riding_style, "スキー", {value: :スキー, style: "display: inline-block;"} %>
-                        <%= f.radio_button :riding_style_eq, 3 %>
-                        <%= f.label :riding_style, "その他", {value: :その他, style: "display: inline-block;"} %>
-                      </div>
                       <div class="field form-group col-md-12">
                         <%= f.label :"自家用車", class: " control-label" %>
                       　<%= f.radio_button :is_owned_eq, '', checked: true %>
@@ -88,11 +53,26 @@
                     <div class="actions col-md-12 border-top border-gray pt-2 mb-0">
                       <%= f.submit "検索", class: 'btn btn-info btn-lg col' %>
                     </div>
+                  </div>
                   <% end %>
                 </div>
               </div>
-            </div>
-          </div>
+        </div>
+    </div>
+  <div class=" col-md-8 p-3">
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item">
+        <a href="#tab1" class="nav-link active small" data-toggle="tab">検索<span class="badge badge-light"><%= @q_users.count %></span></a>
+      </li>
+      <li class="nav-item">
+        <a href="#tab2" class="nav-link small" data-toggle="tab">スノーボード<span class="badge badge-light"><%= @snowboard_users.count %></span></a>
+      </li>
+      <li class="nav-item">
+        <a href="#tab3" class="nav-link small" data-toggle="tab">スキー<span class="badge badge-light"><%= @ski_users.count %></span></a>
+      </li>
+    </ul>
+    <div class="tab-content">
+        <div id="tab1" class="tab-pane active">
           <div class="my-3 p-3 bg-white rounded shadow-sm">
             <% @q_users.each do |user| %>
             <%= render "users/profile", user: user%>
@@ -113,6 +93,8 @@
             <% end %>
           </div>
         </div>
+    </div>
   </div>
 </div>
+
 

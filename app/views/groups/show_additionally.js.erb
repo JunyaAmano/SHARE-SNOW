@@ -1,0 +1,10 @@
+console.log('test')
+var messageHeight = messageContainer.scrollHeight
+
+messageContainer.insertAdjacentHTML('afterbegin', "<%= j(render partial: "groups/chat", collection: @chats) %>")
+// メッセージが存在するときだけ，更に読み込み可能とする
+var newMessageHeight = messageContainer.scrollHeight
+window.scrollBy(0, newMessageHeight - messageHeight)
+<% if @chats.present? %>
+    showAdditionally = true
+<% end %>

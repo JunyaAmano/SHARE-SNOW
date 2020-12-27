@@ -31,8 +31,6 @@ document.addEventListener('turbolinks:load', () => {
         }
       },
 
-
-
       $(document).on('keypress', '[data-behavior~=group_speaker]', function(event) {
         if (event.keyCode === 13) {
           App.group.speak([event.target.value, $('[data-user]').attr('data-user'), $('[data-group]').attr('data-group')]);
@@ -51,5 +49,26 @@ document.addEventListener('turbolinks:load', () => {
       }
       // 最初にページ一番下へ移動させる
       scrollToBottom()
+
+      let oldestMessageId
+      // メッセージの追加読み込みの可否を決定する変数
+      window.showAdditionally = true
+
+      window.addEventListener('scroll', () => {
+          if (documentElement.scrollTop === 0 && showAdditionally) {
+              showAdditionally = false
+              // 表示済みのメッセージの内，最も古いidを取得
+              console.log('test')
+              oldestMessageId = $('.chat:first').data('chat_id')
+              // Ajax を利用してメッセージの追加読み込みリクエストを送る。最も古いメッセージidも送信しておく。
+              $.ajax({
+                  type: 'GET',
+                  url: '/show_additionally',
+                  cache: false,
+                  data: {oldest_chat_id: oldestMessageId, remote: true}
+              })
+          }
+      }, {passive: true});
+
   });
 });

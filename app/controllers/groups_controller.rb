@@ -9,6 +9,11 @@ class GroupsController < ApplicationController
     @groups = Group.all.order(updated_at: :desc)
   end
 
+  def show_additionally
+    last_id = params[:oldest_chat_id].to_i - 1
+    @chats = Chat.includes(:user).order(:id).where(id: 1..last_id).last(50)
+  end
+
   def index
     @group = Group.new
     @groups = Group.all.order(updated_at: :desc)

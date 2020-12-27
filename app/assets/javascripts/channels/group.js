@@ -1,13 +1,11 @@
+
 document.addEventListener('turbolinks:load', () => {
   jQuery(document).ready(function(){
 
     // js.erb 内で使用できるように変数を定義しておく
     window.messageContainer = document.getElementById('chat')
 
-    // 以下のプログラムが他のページで動作しないようにしておく
-    if (messageContainer === null) {
-        return
-    }
+    // 以下のプログラムが他のページで動作しないようにしてお
 
     App.group = App.cable.subscriptions.create({
         channel: "GroupChannel",

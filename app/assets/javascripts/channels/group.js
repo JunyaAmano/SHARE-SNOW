@@ -3,9 +3,12 @@ document.addEventListener('turbolinks:load', () => {
   jQuery(document).ready(function(){
 
     // js.erb 内で使用できるように変数を定義しておく
-    window.messageContainer = document.getElementById('chat')
+    window.messageContainer = document.getElementById('chat_room_name')
 
-    // 以下のプログラムが他のページで動作しないようにしてお
+    // 以下のプログラムが他のページで動作しないようにしておく
+    if (messageContainer === null) {
+        return
+    }
 
     App.group = App.cable.subscriptions.create({
         channel: "GroupChannel",
@@ -52,21 +55,22 @@ document.addEventListener('turbolinks:load', () => {
       // メッセージの追加読み込みの可否を決定する変数
       window.showAdditionally = true
 
-      window.addEventListener('scroll', () => {
-          if (documentElement.scrollTop === 0 && showAdditionally) {
-              showAdditionally = false
+      // 無限スクロール機能（不具合有）
+      // window.addEventListener('scroll', () => {
+          // if (documentElement.scrollTop === 0 && showAdditionally) {
+              // showAdditionally = false
               // 表示済みのメッセージの内，最も古いidを取得
-              console.log('test')
-              oldestMessageId = $('.chat:first').data('chat_id')
+              // console.log('test')
+              // oldestMessageId = $('.chat:first').data('chat_id')
               // Ajax を利用してメッセージの追加読み込みリクエストを送る。最も古いメッセージidも送信しておく。
-              $.ajax({
-                  type: 'GET',
-                  url: '/show_additionally',
-                  cache: false,
-                  data: {oldest_chat_id: oldestMessageId, remote: true}
-              })
-          }
-      }, {passive: true});
+              // $.ajax({
+                  // type: 'GET',
+                  // url: '/show_additionally',
+                  // cache: false,
+                  // data: {oldest_chat_id: oldestMessageId, remote: true}
+              // })
+          // }
+      // }, {passive: true});
 
   });
 });

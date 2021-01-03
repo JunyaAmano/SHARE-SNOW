@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root 'user_posts#top'
-  
+
   resources :user_posts, only: [:new, :create, :index, :show, :edit, :destroy, :update] do
     resources :user_post_comments, only: [:create, :destroy]
     resource :user_post_favorites, only: [:create, :destroy]
@@ -30,6 +30,6 @@ Rails.application.routes.draw do
   resources :inquiries, only: [:new,:create]
   resources :notifications, only: [:index]
   resources :groups, only: [:index, :show, :create, :destroy]
-  get '/show_additionally', to: 'groups#show_additionally'
+  # get '/show_additionally', to: 'groups#show_additionally'
 
 end
